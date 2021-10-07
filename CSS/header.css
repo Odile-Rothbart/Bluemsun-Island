@@ -2,24 +2,30 @@
     box-sizing: border-box;
     font-family:仿宋 ;
     font-weight: bolder;
+    margin: 0;
+    padding: 0;
 }
 html,body{
     margin: 0;
     padding: 0;
 }
+body{
+    background: url(../IMG/Green\ and\ Blue.jpg);
+}
 header{
-    background-color: rgba(1, 24, 56);
+    margin: 0 auto;
+    background-color: rgba(2, 105, 100, 0.5);
     color: white;
 }
 header h1{
     margin: 25px 25px 25px 25px auto;
 }
 header div{
-    width: 1200px;
+    /* width: 1200px; */
     height: 100%;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 nav{
@@ -46,15 +52,16 @@ nav{
     transition: color 0.5s ease-in-out;
 }
 .first li :hover{
-    color:rgba(28, 77, 118) ;
+    color:rgb(5, 150, 82) ;
 }
 .second{
-    background-color: rgba(28, 77, 118);
+    background-color: rgba(2, 105, 100, 0.5);
     position: absolute;
     width: 120px;
     padding: 0;
     opacity: 0;
     transition: transform 1s linear,opacity 1s ease-in-out;
+    z-index: 999;
 }
 .second li{
     display: block;
@@ -65,7 +72,7 @@ nav{
 .first li:hover .second{
     opacity: 1;
     transform: translateY(10px);
-    background-color: rgba(28, 77, 118);
+    background-color: rgba(2, 105, 100, 0.5);
 }
 .second li:hover{
     color: turquoise;
@@ -73,7 +80,7 @@ nav{
 }
 .second::before{
     content: "";
-    border-color: transparent transparent rgba(28, 77, 118) transparent; 
+    border-color: transparent transparent rgba(2, 105, 100, 0.5) transparent; 
     border-width: 8px;
     position: absolute;
     bottom: 100%;
@@ -81,17 +88,17 @@ nav{
     border-style: solid;
 }
 footer{
-    background-color:rgba(1, 24, 56) ;
+    background-color:rgba(2, 105, 100, 0.5) ;
     color: white;
 }
 footer div{
-    width: 1400px;
+    /* width: 1400px; */
     height: 100%;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
-footer img{
-    margin: 1% 2% auto;
+footer div p{
+    text-align: center;
 }
