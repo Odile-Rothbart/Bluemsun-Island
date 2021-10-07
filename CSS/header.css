@@ -1,0 +1,97 @@
+*{
+    box-sizing: border-box;
+    font-family:仿宋 ;
+    font-weight: bolder;
+}
+html,body{
+    margin: 0;
+    padding: 0;
+}
+header{
+    background-color: rgba(1, 24, 56);
+    color: white;
+}
+header h1{
+    margin: 25px 25px 25px 25px auto;
+}
+header div{
+    width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nav{
+    height: 100%;
+}
+.first{
+    display: flex;
+    height: 100%;
+    margin: 0 auto;
+    justify-content: space-around;
+    align-items: center;
+}
+.first li{
+    display: inline-block;
+    list-style: none;
+    height: 100%;
+    padding: 0 10px;
+    text-align: center;
+    transition: background-color 0.5s linear;
+}
+.first li a{
+    color: white;
+    text-decoration: none;
+    transition: color 0.5s ease-in-out;
+}
+.first li :hover{
+    color:rgba(28, 77, 118) ;
+}
+.second{
+    background-color: rgba(28, 77, 118);
+    position: absolute;
+    width: 120px;
+    padding: 0;
+    opacity: 0;
+    transition: transform 1s linear,opacity 1s ease-in-out;
+}
+.second li{
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    width: 100%;
+}
+.first li:hover .second{
+    opacity: 1;
+    transform: translateY(10px);
+    background-color: rgba(28, 77, 118);
+}
+.second li:hover{
+    color: turquoise;
+    background-color: #a0b9c9;
+}
+.second::before{
+    content: "";
+    border-color: transparent transparent rgba(28, 77, 118) transparent; 
+    border-width: 8px;
+    position: absolute;
+    bottom: 100%;
+    left: 20%;
+    border-style: solid;
+}
+footer{
+    background-color:rgba(1, 24, 56) ;
+    color: white;
+}
+footer div{
+    width: 1400px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+footer img{
+    margin: 1% 2% auto;
+}
