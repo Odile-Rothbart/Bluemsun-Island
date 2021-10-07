@@ -15,7 +15,7 @@
 <body>
     <header>
         <div>
-            <h1>蓝旭杂货铺</h1>
+            <h1>蓝旭岛</h1>
             <nav>
                 <ul class="first">
                     <li><a href="./home.html">首页</a></li>
@@ -49,19 +49,66 @@
                     <div class="tab" role="tabpanel">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Section 1</a></li>
-                            <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Section 2</a></li>
+                            <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">登录</a></li>
+                            <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">注册</a></li>
                             <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Section 3</a></li>
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content tabs">
                             <div role="tabpanel" class="tab-pane fade in active" id="Section1">
-                                <h3>Section 1</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+                                <h3>登录</h3>
+                                <section id="form">
+                                    <!-- <div id="fk"></div> -->
+                                    <form id="dl">
+                                        <fieldset>
+                                            <legend>登录</legend>
+                                            <div class="input">
+                                                <label for="username2">用户名:</label>
+                                                <input type="text" name="username" id="username" placeholder="请输入用户名">
+                                            </div>
+                                            <div id="tip-name"></div>
+                                            <div class="input">
+                                                <label for="password2">密码:</label>
+                                                <input type="password" name="password" id="password" placeholder="密码只包括字母和数字，且区分大小写">
+                                            </div>
+                                            <div id="tip-password"></div>
+                                            <input type="button" value="登录" id="submit">
+                                            <p>没有账号？<a href="./signin.html">立即注册</a></p>
+                                        </fieldset>
+                                    </form>
+                                </section>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="Section2">
-                                <h3>Section 2</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+                                <h3>注册</h3>
+                                <section id="form">
+                                    <!-- <div id="fk"></div> -->
+                                    <form id="zc">
+                                        <fieldset>
+                                            <legend>快速注册</legend>
+                                            <div class="input">
+                                                <label for="username1">用户名:</label>
+                                                <input type="text" name="username" id="username" placeholder="用户名请以大写字母开头">
+                                            </div>
+                                            <div id="tip-name"></div>
+                                            <div class="input">
+                                                <label for="password1">密码:</label>
+                                                <input type="password" name="password" id="password" placeholder="密码只包括字母和数字，且区分大小写">
+                                            </div>
+                                            <div id="tip-password"></div>
+                                            <div class="input">
+                                                <label for="pass1">确认密码：</label>
+                                                <input type="password" name="pass" id="pass" placeholder="请再次确认密码">
+                                            </div>
+                                            <div id="tip-pass"></div>
+                                            <div class="input">
+                                                <label for="tel">电话号码:</label>
+                                                <input type="tel" name="tel" id="tel" placeholder="请输入11位电话号码">
+                                            </div>
+                                            <input type="button" value="立即注册" id="submit">
+                                            <p class="tip">已有账号?<a href="./login.html">直接登录</a></p>
+                                        </fieldset>
+                                    </form>
+                                </section>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="Section3">
                                 <h3>Section 3</h3>

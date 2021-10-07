@@ -1,4 +1,4 @@
-.demo{ background: #d57d7d;padding: 1.5em 0; }
+.demo{ background: url(../IMG/Green\ and\ Blue.jpg);padding: 1.5em 0; }
 		a:hover,a:focus{
 		    outline: none;
 		    text-decoration: none;
@@ -72,3 +72,81 @@
 		        border: none;
 		    }
 		}
+/* 表格 */
+form{
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+fieldset{
+    width: 100%;
+    height: 100%;
+    border: teal solid;
+}
+fieldset div{
+    display: flex;
+    align-items:center;
+    width: 50%;
+    margin: 0 auto;
+    justify-content: space-around;
+}
+label,input{
+    display: block; 
+    text-align: left;
+    margin: 10px;
+    width: 150px;
+}
+input{
+    width: 200px;
+    height: 30px;
+}
+.input{
+    height: 15%;
+}
+#submit{
+    width: 90px;
+    font-size: large;
+    text-align: center;
+    margin: 20px auto;
+    background-color: rgba(28, 77, 118);
+    color: white;
+    border-radius: 5px;
+    height: 30px;
+}
+legend{
+    color: teal;
+    font-size: xx-large;
+}
+section{
+    height: 50px;
+}
+#form{
+    height: 500px;
+    display: flex;
+    font-size: x-large;
+}
+#form #fk{
+    background-color: turquoise;
+    width: 50%;
+    color: white;
+    font-size: xx-large;
+    text-align: center;
+    height: 500px;
+    line-height: 500px;
+}
+#tip-name,#tip-pass,#tip{
+    color: red;
+    height: 20px;
+}
+#tip-password{
+    color: red;
+    height: 40px;
+}
+form a{
+    text-decoration: none;
+    color: rgba(28, 77, 118);
+}
