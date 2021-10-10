@@ -18,6 +18,7 @@ function check1(event){
 submit1.addEventListener("click",check1,false);
 // 背景转换
 function setbody1(){
+    console.log(1)
     $("body").css("background","url(../IMG/岛.png)");
 }
 function setbody2(){
