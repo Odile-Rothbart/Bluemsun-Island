@@ -17,14 +17,14 @@ function check1(event){
 }
 submit1.addEventListener("click",check1,false);
 // 背景转换
-function setbody1(){
-    console.log(1)
-    $("body").css("background","url(../IMG/岛.png)");
-}
-function setbody2(){
-    console.log(2)
-    $("body").css("background","url(../IMG/Green and Blue.jpg)");
-}
+// function setbody1(){
+//     console.log(1)
+//     $("body").css("background","url(../IMG/岛.png)");
+// }
+// function setbody2(){
+//     console.log(2)
+//     $("body").css("background","url(../IMG/Green\ and\ Blue.jpg)");
+// }
 // 登录交互
 // window.onload = function(){
 //     var submit = document.getElementById("submit");
