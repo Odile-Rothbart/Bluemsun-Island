@@ -3,30 +3,28 @@ var password1=document.getElementById("password1");
 function checkPassword1(event){
     var tippassword1=document.getElementById("tip-password1");
     if(/[^0-9a-zA-Z]/.exec(password1.value)){       
-        tippassword1.innerHTML="请输入正确形式的密码（密码只包括字母和数字，且区分大小写）";
+        tippassword1.style.color="rgb(214, 72, 72)"
         event.preventDefault();
     }
     else{
-        tippassword1.innerHTML="";
+        tippassword1.style.color="#908a78"
     }
 }
 password1.addEventListener("blur",checkPassword1,false);
-// function checkPassword1(){
-//     if(/[^0-9a-zA-Z]/.exec($("#password1").val())){
-//         console.log(1)
-//         $("#tip-password1").html("请输入正确形式的密码（密码只包括字母和数字，且区分大小写）");
-//     }
-//     else{
-//         $("#tip-password1").html("");
-//     }
-// }
-// $("#password1").blur(checkPassword1());
-// $("#submit1").click(checkPassword1());
 var submit1=document.getElementById("submit1");
 function check1(event){
     checkPassword1(event);
 }
 submit1.addEventListener("click",check1,false);
+// 背景转换
+function setbody1(){
+    var scr="../IMG/岛.png";
+    $("body").css("background","url("+scr+")");
+}
+function setbody2(){
+    var scr="../IMG/Green and Blue.jpg";
+    $("body").css("background","url("+scr+")");
+}
 // 登录交互
 // window.onload = function(){
 //     var submit = document.getElementById("submit");
@@ -89,11 +87,11 @@ var username2=document.getElementById("username2");
 function checkName2(event){
     var tipname2=document.getElementById("tip-name2");
     if(/^[^A-Z]/.exec(username2.value)){
-        tipname2.innerHTML="用户名请以大写字母开头";
+        tipname2.style.color="rgb(214, 72, 72)"
         event.preventDefault();
     }
     else{
-        tipname2.innerHTML="";
+        tipname2.style.color="#908a78"
     }
 }
 username2.addEventListener("blur",checkName2,false);
@@ -101,11 +99,11 @@ var password2=document.getElementById("password2");
 function checkPassword2(event){
     var tippassword2=document.getElementById("tip-password2");
     if(/[^0-9a-zA-Z]/.exec(password2.value)){
-        tippassword2.innerHTML="请输入正确形式的密码（密码只包括字母和数字，且区分大小写）";
+        tippassword2.style.color="rgb(214, 72, 72)"
         event.preventDefault();
     }
     else{
-        tippassword2.innerHTML="";
+        tippassword2.style.color="#908a78"
     }
 }
 password2.addEventListener("blur",checkPassword2,false);
@@ -166,3 +164,29 @@ submit2.addEventListener("click",check2,false);
 //         }
 //     }
 // }
+$(document).ready(function(){
+    $("#submit2").click(function(){
+        var username=$("#username2").val();
+        var password=$("#password2").val();
+        var pass=$("#pass").val();
+        var tel=$("#tel").val();
+        var postDate={
+            "username":username,
+            "password":password,
+            "pass":pass,
+            "tel":tel
+        }
+        $.ajax({
+            type: 'POST',
+            url:"../test.json",
+            data:postDate,
+            error: function() {
+                alert('请求失败 ');
+            },
+            success: function(data) {
+                ajaxobj=eval("("+data+")");
+                alert(ajaxobj.msg);
+            }
+        });
+    });
+});

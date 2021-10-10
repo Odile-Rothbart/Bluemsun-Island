@@ -17,7 +17,7 @@
 		    display: block;
 		    height: 70px;
 		    line-height: 65px;
-		    background: linear-gradient(165deg, transparent 29%, #908a78 30%);
+		    background: linear-gradient(165deg, transparent 29%, #908a78c5 30%);
 		    font-size: 15px;
 		    font-weight: 600;
 		    color: #fff;
@@ -30,7 +30,7 @@
 		}
 		.tab .nav-tabs li.active a,
 		.tab .nav-tabs li a:hover{
-		    background: linear-gradient(165deg, transparent 29%, #efe8d5 30%);
+		    background: linear-gradient(165deg, transparent 29%, #efe8d5a2 30%);
 		    border: none;
 		    color: #908a78;
 		}
@@ -52,7 +52,7 @@
 		    font-size: 14px;
 		    color: #6f6c6c;
 		    line-height: 26px;
-		    background: #efe8d5;
+		    background: #efe8d5a2;
 		    padding: 20px;
 		}
 		.tab .tab-content h3{
@@ -65,7 +65,7 @@
 		}
 		@media only screen and (max-width: 480px){
 		    .tab .nav-tabs li{
-		        width: 100%;
+		        width: 70%;
 		        margin-bottom: 8px;
 		    }
 		    .tab .nav-tabs li:last-child{
@@ -75,9 +75,12 @@
 		        border: none;
 		    }
 		}
+body{
+    background: url(../IMG/岛.png) no-repeat 100%;
+}
 /* 表格 */
 form{
-    width: 80%;
+    width: 70%;
     height: 100%;
     margin: 0 auto;
     display: flex;
@@ -92,15 +95,16 @@ form div{
     margin: 0 auto;
     justify-content: space-around;
 }
-label,input{
+input{
     display: block; 
     text-align: left;
     margin: 10px;
-    width: 150px;
-}
-input{
-    width: 200px;
-    height: 30px;
+    width: 70%;
+	height: 30px;
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+	border-bottom: solid rgba(0, 0, 0, 0.65);
+	border-width: 0.1em;
 }
 .input{
     height: 15%;
@@ -109,15 +113,37 @@ input{
     width: 45%;
     text-align: center;
     margin: 20px auto;
-    background-color: rgb(2, 105, 100);
+    background-color: rgba(2, 105, 100, 0.65);
     color: white;
     border-radius: 5px;
     height: 30px;
 }
+.submit:hover{
+	background-color: rgba(2, 105, 100);
+}
 .form{
-    height: 450px;
+    /* height: 400px; */
     display: flex;
 }
-#tip-name2,#tip-pass,#tip,#tip-password1,#tip-password2{
+#login{
+	height: 350px;
+}
+#signin{
+	height: 400px;
+}
+.tip{
+	font-size: small;
+}
+#tip-pass{
     color: rgb(214, 72, 72);
+}
+#Section1,#Section2{
+	font-size: large;
+}
+footer{
+	position: fixed;
+	bottom: 0;
+}
+#demo{
+	opacity: 0.5;
 }

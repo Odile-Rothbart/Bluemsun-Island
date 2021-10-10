@@ -10,7 +10,8 @@ html,body{
     padding: 0;
 }
 body{
-    background: url(../IMG/Green\ and\ Blue.jpg);
+    /* background: url(../IMG/Green\ and\ Blue.jpg); */
+    background-color: black;
 }
 header{
     margin: 0 auto;
@@ -88,6 +89,7 @@ nav{
     border-style: solid;
 }
 footer{
+    width: 100%;
     background-color:rgba(2, 105, 100, 0.5) ;
     color: white;
 }

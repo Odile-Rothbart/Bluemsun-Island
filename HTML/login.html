@@ -49,8 +49,8 @@
                     <div class="tab" role="tabpanel">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">登录入岛</a></li>
-                            <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">注册为芦苇</a></li>
+                            <li role="presentation" class="active" onclick="setbody1()"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">登录入岛</a></li>
+                            <li role="presentation" onclick="setbody2()"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">注册为芦苇</a></li>
                             <!-- <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Section 3</a></li> -->
                         </ul>
                         <!-- Tab panes -->
@@ -60,15 +60,15 @@
                                 <section class="form">
                                     <form id="login">
                                             <div class="input">
-                                                <label for="username1">用户名:</label>
-                                                <input type="text" name="username1" id="username1" placeholder="请输入用户名">
+                                                <!-- <label for="username1">用户名:</label> -->
+                                                <input type="text" name="username1" id="username1" placeholder="用户名">
                                             </div>
-                                            <div id="tip-name1"></div>
+                                            <div id="tip-name1" class="tip"></div>
                                             <div class="input">
-                                                <label for="password1">密码:</label>
-                                                <input type="password" name="password1" id="password1" placeholder="密码只包括字母和数字，且区分大小写">
+                                                <!-- <label for="password1">密码:</label> -->
+                                                <input type="password" name="password1" id="password1" placeholder="密码">
                                             </div>
-                                            <div id="tip-password1"></div>
+                                            <div id="tip-password1"  class="tip">密码只包括字母和数字，且区分大小写</div>
                                             <input type="button" value="点击登录入岛" id="submit1" class="submit">
                                     </form>
                                 </section>
@@ -78,23 +78,23 @@
                                 <section class="form">
                                     <form id="signin">
                                             <div class="input">
-                                                <label for="username2">用户名:</label>
-                                                <input type="text" name="username2" id="username2" placeholder="用户名请以大写字母开头">
+                                                <!-- <label for="username2">用户名:</label> -->
+                                                <input type="text" name="username2" id="username2" placeholder="用户名">
                                             </div>
-                                            <div id="tip-name2"></div>
+                                            <div id="tip-name2"  class="tip">用户名请以大写字母开头</div>
                                             <div class="input">
-                                                <label for="password2">密码:</label>
-                                                <input type="password" name="password2" id="password2" placeholder="密码只包括字母和数字，且区分大小写">
+                                                <!-- <label for="password2">密码:</label> -->
+                                                <input type="password" name="password2" id="password2" placeholder="密码">
                                             </div>
-                                            <div id="tip-password2"></div>
+                                            <div id="tip-password2"  class="tip">密码只包括字母和数字，且区分大小写</div>
                                             <div class="input">
-                                                <label for="pass">确认密码：</label>
+                                                <!-- <label for="pass">确认密码：</label> -->
                                                 <input type="password" name="pass" id="pass" placeholder="请再次确认密码">
                                             </div>
-                                            <div id="tip-pass"></div>
+                                            <div id="tip-pass"  class="tip"></div>
                                             <div class="input">
-                                                <label for="tel">电话号码:</label>
-                                                <input type="tel" name="tel" id="tel" placeholder="请输入11位电话号码">
+                                                <!-- <label for="tel">电话号码:</label> -->
+                                                <input type="tel" name="tel" id="tel" placeholder="电话号码">
                                             </div>
                                             <input type="button" value="点击注册 成为芦苇" id="submit2" class="submit">
                                     </form>
