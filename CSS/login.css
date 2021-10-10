@@ -76,7 +76,7 @@
 		    }
 		}
 body{
-    background: url(../IMG/岛.png) no-repeat 100%;
+    background: url(../IMG/岛.png);
 }
 /* 表格 */
 form{
