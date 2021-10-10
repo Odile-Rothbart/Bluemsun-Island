@@ -18,12 +18,14 @@ function check1(event){
 submit1.addEventListener("click",check1,false);
 // 背景转换
 function setbody1(){
+    console.log(1)
     var scr="../IMG/岛.png";
-    $("body").css("background","url("+scr+")");
+    $("body").css("background","url('+scr+')");
 }
 function setbody2(){
+    console.log(2)
     var scr="../IMG/Green and Blue.jpg";
-    $("body").css("background","url("+scr+")");
+    $("body").css("background","url('+scr+')");
 }
 // 登录交互
 // window.onload = function(){
