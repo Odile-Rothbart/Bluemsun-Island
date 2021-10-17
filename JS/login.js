@@ -1,3 +1,18 @@
+// 弹窗
+$( function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+ 
+  } );
 // 登录验证
 var password1=document.getElementById("password1");
 function checkPassword1(event){
@@ -19,65 +34,52 @@ submit1.addEventListener("click",check1,false);
 // 背景转换
 function setbody1(){
     console.log(1)
-    $("body").css("background","url(../IMG/GB.jpg)");
+    $("body").css("background","url(../IMG/岛.png)");
 }
 function setbody2(){
     console.log(2)
-    $("body").css("background","url(../IMG/岛.png)");
+    $("body").css("background","url(../IMG/GB.jpg)");
 }
 // 登录交互
-// window.onload = function(){
-//     var submit = document.getElementById("submit");
-//     submit.onclick = function(){
-//         var username = document.getElementById("username").value;
-//         var password = document.getElementById("password").value;
-//         var xhr = new XMLHttpRequest();
-//         xhr.open("post", "http://rothbart.natapp1.cc/loginServlet");
-//         xhr.setRequestHeader("Content-Type", "application/json");
-//         xhr.withCredentials=true;
-//         xhr.send(JSON.stringify({
-//             username: username,
-//             password: password
-//         }));
-//         xhr.onreadystatechange = function(){
-//             if(xhr.readyState === 4 && xhr.status === 200){
-//                 var res = JSON.parse(xhr.responseText)
-//                 console.log(res.msg);
-//                 console.log(res.status);
-//                 console.log(res.data);
-//                 localStorage.setItem("userid", res.data.ID);
-//                 var fk=document.getElementById("fk");
-//                 if(res.status==1){
-//                     fk.innerHTML="恭喜！登录成功！";
-//                     setTimeout(function(){
-//                         location.href="../html/home.html";
-//                     },3000);
-//                 }
-//                 if(res.status==0){
-//                     fk.innerHTML="抱歉！登录失败！";
-//                 }
-//             }
-//         }
-//     }
-// }
 $(document).ready(function(){
     $("#submit1").click(function(){
-        var username=$("#username1").val();
+        var phoneNumber=$("#phonenum").val();
         var password=$("#password1").val();
         var postDate={
-            "username":username,
-            "password":password
+            "password":password,
+            "phoneNumber":phoneNumber
         }
+        console.log(postDate)
         $.ajax({
             type: 'POST',
-            url:"../test.json",
-            data:postDate,
+            url:"http://windlinxy.top:8080/bluemsun_island/users/token",
+            contentType: "application/json",
+            data:JSON.stringify(postDate),
             error: function() {
-                alert('请求失败 ');
+                console.log(data)
+                $("#dialog p").html("登录失败！请重新登录")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                },2000);
             },
             success: function(data) {
-                ajaxobj=eval("("+data+")");
-                alert(ajaxobj.msg);
+                if(data.status==1){
+                    console.log(data)
+                    $("#dialog p").html("登录成功！三秒后跳转首页")
+                    $( "#dialog" ).dialog( "open" );
+                    setTimeout(function(){
+                        location.href="../HTML/home.html";
+                     },3000);
+                }
+                else{
+                    console.log(data)
+                    $("#dialog p").html("登录失败！请重新登录")
+                    $( "#dialog" ).dialog( "open" );
+                    setTimeout(function(){
+                        $( "#dialog" ).dialog( "close" );
+                    },2000);
+                }
             }
         });
     });
@@ -119,73 +121,57 @@ function checkPass(event){
     }
 }
 pass.addEventListener("blur",checkPass,false);
-var tel=document.getElementById("tel");
-function checkTel(){
-    tel.value=tel.value.replace(/(\d{3})(\d{4})(\d{4})/g,'+86 $1 $2 $3');
-}
-tel.addEventListener("blur",checkTel,false);
 var submit2=document.getElementById("submit2");
 function check2(event){
     checkName2(event);
     checkPassword2(event);
     checkPass(event);
-    checkTel();
 }
 submit2.addEventListener("click",check2,false);
-// // 注册交互
-// window.onload = function(){
-//     var submit = document.getElementById("submit");
-//     submit.onclick = function(){
-//         var username = document.getElementById("username").value;
-//         var password = document.getElementById("password").value;
-//         var xhr = new XMLHttpRequest();
-//         xhr.open("post", "http://rothbart.natapp1.cc/indexServlet");
-//         xhr.setRequestHeader("Content-Type", "application/json");
-//         xhr.send(JSON.stringify({
-//             username: username,
-//             password: password
-//         }));
-//         xhr.onreadystatechange = function(){
-//             if(xhr.readyState === 4 && xhr.status === 200){
-//                 var res = JSON.parse(xhr.responseText)
-//                 console.log(res.msg);
-//                 console.log(res.status);
-//                 var fk=document.getElementById("fk");
-//                 if(res.status==1){
-//                     fk.innerHTML="恭喜！注册成功！";
-//                     setTimeout(function(){
-//                         location.href="../html/home.html";
-//                     },3000);
-//                 }
-//                 else{
-//                     fk.innerHTML="抱歉！注册失败！";
-//                 }
-//             }
-//         }
-//     }
-// }
+// 注册交互
+
 $(document).ready(function(){
     $("#submit2").click(function(){
         var username=$("#username2").val();
         var password=$("#password2").val();
-        var pass=$("#pass").val();
         var tel=$("#tel").val();
+        console.log(tel)
         var postDate={
             "username":username,
             "password":password,
-            "pass":pass,
-            "tel":tel
+            "phoneNumber":tel
         }
+        console.log(postDate)
         $.ajax({
             type: 'POST',
-            url:"../test.json",
-            data:postDate,
+            url:"http://windlinxy.top:8080/bluemsun_island/users",
+            contentType: "application/json",
+            data:JSON.stringify(postDate),
             error: function() {
-                alert('请求失败 ');
+                console.log(data)
+                $("#dialog p").html("注册失败！请重新注册")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                },2000);
             },
             success: function(data) {
-                ajaxobj=eval("("+data+")");
-                alert(ajaxobj.msg);
+                if(data.status==1){
+                    console.log(data)
+                    $("#dialog p").html("注册成功！")
+                    $( "#dialog" ).dialog( "open" );
+                    setTimeout(function(){
+                        location.href="../HTML/login.html";
+                     },3000);
+                }
+                else{
+                    console.log(data)
+                    $("#dialog p").html("注册失败！请重新注册")
+                    $( "#dialog" ).dialog( "open" );
+                    setTimeout(function(){
+                        $( "#dialog" ).dialog( "close" );
+                    },2000);
+                }
             }
         });
     });

@@ -1,106 +1,141 @@
 *{
     box-sizing: border-box;
-    font-family:仿宋 ;
-    font-weight: bolder;
-    margin: 0;
-    padding: 0;
-}
-html,body{
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
 }
 body{
-    /* background: url(../IMG/Green\ and\ Blue.jpg); */
-    background-color: black;
+    background-color: rgb(255, 255, 255);
 }
 header{
+    background-color: rgba(239, 232, 213, 0.7);
+    /* position: sticky;
+    top: 0px; */
+    width: 100%;
     margin: 0 auto;
-    background-color: rgba(2, 105, 100, 0.5);
+    padding: 5px;
+    z-index: 9999;
+    display: flex;
+    box-shadow: 0px -5px 15px rgba(239, 232, 213, 0.7) ;
+}
+#input{
+    display: flex;
+    width: 20%;
+    height: 100%;
+    margin: 0 0 auto;
+    padding: 4px;
+}
+#input input{
+    width: 70%;
+    height: 30px;
+    line-height: 30px;
+    margin: 2px auto;
+    border-radius: 20px;
+}
+button{
+    width: 20%;
+    margin: 2px auto;
+    border-radius: 20px;
+    background-color: rgba(143, 77, 38, 0.7);
     color: white;
 }
-header h1{
-    margin: 25px 25px 25px 25px auto;
-}
-header div{
-    /* width: 1200px; */
-    height: 100%;
+#all{
     margin: 0 auto;
+    padding: 2px ;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    flex-wrap: wrap;
+    /* background-color: rgb(252, 221, 121); */
+    width: 60%;
+    border-radius: 5px;
 }
-nav{
-    height: 100%;
-}
-.first{
+#all a{
+    font-size: 0.5em;
     display: flex;
-    height: 100%;
-    margin: 0 auto;
-    justify-content: space-around;
+    flex-direction: column;
     align-items: center;
-}
-.first li{
-    display: inline-block;
-    list-style: none;
-    height: 100%;
-    padding: 0 10px;
-    text-align: center;
-    transition: background-color 0.5s linear;
-}
-.first li a{
-    color: white;
     text-decoration: none;
-    transition: color 0.5s ease-in-out;
+    color: rgb(143, 77, 38);
 }
-.first li :hover{
-    color:rgb(5, 150, 82) ;
+#all a:hover{
+    transform: scale(1.1);
 }
-.second{
-    background-color: rgba(2, 105, 100, 0.5);
-    position: absolute;
-    width: 120px;
+#all div{
+    width: 20%;
+}
+#all span{
     padding: 0;
-    opacity: 0;
-    transition: transform 1s linear,opacity 1s ease-in-out;
-    z-index: 999;
-}
-.second li{
     display: block;
-    height: 20px;
-    line-height: 20px;
+    width: 30px;
+    height: 30px;
+    background: url(../IMG/orangenav.png) ;
+    background-repeat: no-repeat;
+    background-size: 480px 450px;
+}
+#all div #nav1{
+    background-position: 0 -210px;
+}
+#all div #nav2{
+    background-position: -420px -210px;
+}
+#all div #nav3{
+    background-position: -60px -180px;
+}
+#all div #nav4{
+    background-position: -240px -180px;
+}
+#all div #nav5{
+    background-position: -270px -180px;
+}
+#theme{
+    width: 20%;
+}
+#theme span{
     width: 100%;
+    margin: 10px auto;
+    padding: 0;
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: url(../IMG/orangenav.png) no-repeat;
+    background-size: 480px 450px;
+    background-position: -240px -240px;
+    /* background-color:rgba(160, 238, 225, 0.623); */
 }
-.first li:hover .second{
-    opacity: 1;
-    transform: translateY(10px);
-    background-color: rgba(2, 105, 100, 0.5);
-}
-.second li:hover{
-    color: turquoise;
-    background-color: #a0b9c9;
-}
-.second::before{
-    content: "";
-    border-color: transparent transparent rgba(2, 105, 100, 0.5) transparent; 
-    border-width: 8px;
-    position: absolute;
-    bottom: 100%;
-    left: 20%;
-    border-style: solid;
-}
-footer{
-    width: 100%;
-    background-color:rgba(2, 105, 100, 0.5) ;
-    color: white;
-}
-footer div{
-    /* width: 1400px; */
-    height: 100%;
-    margin: 0 auto;
+#theme a{
+    font-size: 0.5em;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    text-decoration: none;
 }
-footer div p{
+#theme a:hover{
+    transform: scale(1.1);
+}
+main{
+    display: flex;
+    width: 100%;
+}
+#left,#right{
+    width: 15%;
+    background-color: rgba(245, 222, 179, 0.7);
+    height: 500px;
+}
+#middle{
+    width: 70%;
+}
+#left ul li{
+    display: block;
+    width: 100%;
+    background-color: whitesmoke;
+    height: 40px;
+    line-height: 40px;
+}
+#left ul li a{
+    text-decoration: none;
+    display: block;
+    color: rgb(143, 77, 38);
     text-align: center;
+    /* margin: 2px 2px auto; */
+}
+#left ul li a:hover{
+    background-color:rgba(245, 222, 179, 0.7) ;
 }
