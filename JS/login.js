@@ -84,6 +84,7 @@ $(document).ready(function(){
         });
     });
 });
+// 
 // 注册验证
 var username2=document.getElementById("username2");
 function checkName2(event){
