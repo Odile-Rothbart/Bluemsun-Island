@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蓝旭岛</title>
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/usermsg.css">
+    <script src="../JS/external/jquery/jquery.js"></script>
+</head>
+<body>
+    <header>
+        <div id="input">
+            <input type="text">
+            <button>搜索</button>
+        </div>
+        <div id="all">
+            <div><a href="./home.html"><span id="nav1"></span><p>主页</p></a></div>
+            <div><a href="#"><span id="nav2"></span><p>关注</p></a></div>
+            <div><a href="#"><span id="nav3"></span><p>写贴</p></a></div>
+            <div><a href="#"><span id="nav4"></span><p>消息</p></a></div>
+            <div><a href="#"><span id="nav5"></span><p>我的</p></a></div>
+        </div>
+        <div id="theme">
+            <a href="#" id="bright"><span></span><p></p></a>
+        </div>
+    </header>
+    <main>
+        <section id="left">
+            <ul>
+                <li><a href="#">我的主页</a></li>
+                <li><a href="#">我的关注</a></li>
+                <li><a href="#">我的粉丝</a></li>
+                <li><a href="#">我的收藏</a></li>
+                <li><a href="#">我的赞</a></li>
+                <li><a href="#">个人信息管理</a></li>
+            </ul>
+        </section>
+        <section id="middle">
+            <h1>个人信息管理</h1>
+            <form >
+                <div class="file">
+                    <label>头像:</label>
+                    <div id="show">
+                        
+                    </div>
+                    <input type="file" name="file" id="file" multiple>
+                    <input type="button" id="submit1" value="提交" class="submit">
+                </div>
+                <div class="input">
+                    <label for="username2">用户名:</label>
+                    <input type="text" name="username2" id="username2" placeholder="用户名">
+                </div>
+                <div id="tip-name2"  class="tip">用户名请以大写字母开头</div>
+                <div class="input">
+                    <label for="password2">密码:</label>
+                    <input type="password" name="password2" id="password2" placeholder="密码">
+                </div>
+                <div id="tip-password2"  class="tip">密码只包括字母和数字，且区分大小写</div>
+                <div class="input">
+                    <label for="pass">确认密码：</label>
+                    <input type="password" name="pass" id="pass" placeholder="请再次确认密码">
+                </div>
+                <div id="tip-pass"  class="tip"></div>
+                <div class="input">
+                    <label for="tel">电话号码:</label>
+                    <input type="tel" name="tel" id="tel" placeholder="电话号码">
+                </div>
+                <div class="input sex">
+                    <label for="sex">性别:</label>
+                    <label for="sex"><input type="radio" name="sex" id="sex1">&nbsp&nbsp男</label>
+                    <label for="sex"><input type="radio" name="sex" id="sex2">&nbsp&nbsp女</label>
+                    <label for="sex"><input type="radio" name="sex" id="sex3">其他</label>
+                </div>
+                <div class="input">
+                    <label for="birthday">生日:</label>
+                    <input type="date" name="birthday" id="birthday">
+                </div>
+                <div class="input">
+                    <label for="signature" class="sign">个性签名:</label>
+                    <textarea name="signature" id="signature" cols="30" rows="10" placeholder="这个芦苇还没有个性签名，很懒(´ﾟДﾟ`)"></textarea>
+                </div>
+                <input type="button" value="确认修改" id="submit2" class="submit">
+            </form>
+        </section>
+        <section id="right"></section>
+    </main>
+</body>
+<script src="../JS/header.js"></script>
+<script src="../JS/usermsg.js"></script>
+</html>

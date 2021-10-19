@@ -115,12 +115,27 @@ main{
     width: 100%;
 }
 #left,#right{
+    margin: 5px auto;
+    border-radius: 5px;
     width: 15%;
     background-color: rgba(245, 222, 179, 0.7);
     height: 500px;
 }
 #middle{
-    width: 70%;
+    width: 69%;
+    height: 100%;
+    margin: 5px auto;
+    border-radius: 5px;
+    background-color: rgba(245, 245, 245, 0.7)
+}
+#middle h1{
+    color: rgb(165, 84, 26);
+    font-family: 仿宋;
+    font-size: xx-large;
+    margin: 5px 0 10px 0;
+}
+#left ul{
+    border-radius: 5px;
 }
 #left ul li{
     display: block;
