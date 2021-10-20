@@ -56,7 +56,6 @@ $(document).ready(function(){
             contentType: "application/json",
             data:JSON.stringify(postDate),
             error: function() {
-                console.log(data)
                 $("#dialog p").html("登录失败！请重新登录")
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){
@@ -151,7 +150,6 @@ $(document).ready(function(){
             contentType: "application/json",
             data:JSON.stringify(postDate),
             error: function() {
-                console.log(data)
                 $("#dialog p").html("注册失败！请重新注册")
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){

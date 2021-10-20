@@ -44,6 +44,17 @@ function check2(event){
 submit2.addEventListener("click",check2,false);
 // 交互
 window.onload = function(){
+    $( "#dialog" ).dialog({
+        autoOpen: false,
+        show: {
+          effect: "blind",
+          duration: 1000
+        },
+        hide: {
+          effect: "explode",
+          duration: 1000
+        }
+      });
     var token= localStorage.getItem("token");
     var postDate={
         "token":token
@@ -54,11 +65,10 @@ window.onload = function(){
         contentType: "application/json",
         data:JSON.stringify(postDate),
         error: function() {
-            console.log(data)
             $("#dialog p").html("身份认证失败，请先登录")
             $( "#dialog" ).dialog( "open" );
             setTimeout(function(){
-                location.href="../HTML/home.html";
+                location.href="../HTML/login.html";
              },3000);
         },
         success: function(data) {
@@ -71,7 +81,7 @@ window.onload = function(){
                 $("#dialog p").html("身份认证失败，请先登录")
             $( "#dialog" ).dialog( "open" );
             setTimeout(function(){
-                location.href="../HTML/home.html";
+                location.href="../HTML/login.html";
              },3000);
             }
         }
@@ -99,7 +109,6 @@ window.onload = function(){
                 contentType: "application/json",
                 data:JSON.stringify(postDate),
                 error: function() {
-                    console.log(data)
                     $("#dialog p").html("图片上传失败，请重新上传")
                     $( "#dialog" ).dialog( "open" );
                     setTimeout(function(){
@@ -153,7 +162,6 @@ window.onload = function(){
             contentType: "application/json",
             data:JSON.stringify(postDate),
             error: function() {
-                console.log(data)
                 $("#dialog p").html("抱歉，信息修改失败")
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){
