@@ -69,9 +69,9 @@
                 </div>
                 <div class="input sex">
                     <label for="sex">性别:</label>
-                    <label for="sex"><input type="radio" name="sex" id="sex1">&nbsp&nbsp男</label>
-                    <label for="sex"><input type="radio" name="sex" id="sex2">&nbsp&nbsp女</label>
-                    <label for="sex"><input type="radio" name="sex" id="sex3">其他</label>
+                    <label for="sex"><input type="radio" name="sex" id="sex1" value="1">&nbsp&nbsp男</label>
+                    <label for="sex"><input type="radio" name="sex" id="sex2" value="0">&nbsp&nbsp女</label>
+                    <label for="sex"><input type="radio" name="sex" id="sex3" value="-1">其他</label>
                 </div>
                 <div class="input">
                     <label for="birthday">生日:</label>
@@ -86,6 +86,9 @@
         </section>
         <section id="right"></section>
     </main>
+    <div id="dialog" title="提示">
+        <p></p>
+    </div>
 </body>
 <script src="../JS/header.js"></script>
 <script src="../JS/usermsg.js"></script>
