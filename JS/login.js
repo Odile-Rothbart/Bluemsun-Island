@@ -65,7 +65,7 @@ $(document).ready(function(){
             success: function(data) {
                 if(data.status==1){
                     console.log(data)
-                    localStorage.setItem("token",data.token);
+                    localStorage.setItem("token",data.Authorization);
                     // var token= localStorage.getItem("token");
                     // console.log(token)
                     $("#dialog p").html("登录成功！三秒后跳转首页")

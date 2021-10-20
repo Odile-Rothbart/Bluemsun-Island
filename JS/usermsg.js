@@ -56,14 +56,18 @@ window.onload = function(){
         }
       });
     var token= localStorage.getItem("token");
-    var postDate={
-        "token":token
-    }
+    console.log(token)
+    // var postDate={
+    //     "token":token
+    // }
     $.ajax({
-        type: 'POST',
-        url:"",
+        type: 'GET',
+        url:"http://windlinxy.top:8080/bluemsun_island/user",
         contentType: "application/json",
-        data:JSON.stringify(postDate),
+        headers:{
+            "Authorization":token
+        },
+        // data:JSON.stringify(postDate),
         error: function() {
             $("#dialog p").html("身份认证失败，请先登录")
             $( "#dialog" ).dialog( "open" );
@@ -75,14 +79,22 @@ window.onload = function(){
             if(data.status==1){
                 console.log(data)
                 console.log("身份认证成功");
+                $("#username2").attr('value',data.user.username2);
+                $("#password2").attr('value',data.user.password);
+                $("#tel").attr('value',data.user.phoneNumber);
+                $('.sex input:radio[name="sex"]:checked').attr('value',data.user.sex);
+                $("#birthday").attr('value',data.user.birthday);
+                $("#signature").attr('value',data.user.signature);
+                console.log(data.user.imageUrl)
+                document.getElementById("show").innerHTML = `<img src="${data.user.imageUrl}" width="150px" height="150px">`
             }
             else{
                 console.log(data)
                 $("#dialog p").html("身份认证失败，请先登录")
-            $( "#dialog" ).dialog( "open" );
-            setTimeout(function(){
-                location.href="../HTML/login.html";
-             },3000);
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    location.href="../HTML/login.html";
+                },3000);
             }
         }
     });
@@ -96,18 +108,22 @@ window.onload = function(){
         if(file){
             reader.readAsDataURL(file);
         }
-        $("submit1").click(function(){
-            var file =$("#file").val();
+        $("#submit1").click(function(){
+            console.log(1)
+            var file =$("#file")[0].files[0];
+            console.log(file)
             var formdata = new FormData();
-            formdata.append('file', file);
-            var postDate={
-                "formdata":formdata
-            }
+            formdata.append('image', file);
+            console.log(formdata.get("image"))
             $.ajax({
                 type: 'POST',
-                url:"",
-                contentType: "application/json",
-                data:JSON.stringify(postDate),
+                url:"http://windlinxy.top:8080/bluemsun_island/user/image",
+                headers:{
+                    "Authorization":token
+                },
+                contentType:false,
+                processData:false,
+                data:formdata,
                 error: function() {
                     $("#dialog p").html("图片上传失败，请重新上传")
                     $( "#dialog" ).dialog( "open" );
@@ -142,7 +158,7 @@ window.onload = function(){
         var tel=$("#tel").val();
         console.log(tel)
         var sex=$('.sex input:radio[name="sex"]:checked').val(); 
-        console.log(sex)
+        console.log(Number(sex)===1)
         var birthday=$("#birthday").val()
         console.log(birthday)
         var signature=$("#signature").val()
@@ -151,14 +167,17 @@ window.onload = function(){
             "username":username,
             "password":password,
             "phoneNumber":tel,
-            "sex":sex,
+            "sex":Number(sex),
             "birthday":birthday,
             "signature":signature
         }
         console.log(postDate)
         $.ajax({
-            type: 'POST',
-            url:"",
+            type: 'PATCH',
+            url:"http://windlinxy.top:8080/bluemsun_island/users",
+            headers:{
+                "Authorization":token
+            },
             contentType: "application/json",
             data:JSON.stringify(postDate),
             error: function() {
