@@ -134,23 +134,92 @@ main{
     font-size: xx-large;
     margin: 5px 0 10px 0;
 }
-#left ul{
-    border-radius: 5px;
+#left h3,#right h3{
+    color: rgb(165, 84, 26);
+    font-family: 仿宋;
+    margin: 5px 0 10px 0;
 }
-#left ul li{
+#left div div{
+    display: block;
+    width: 100%;
+    background-color: whitesmoke;
+    height: 80px;
+    line-height: 80px;
+}
+#right div div{
     display: block;
     width: 100%;
     background-color: whitesmoke;
     height: 40px;
     line-height: 40px;
 }
-#left ul li a{
+#left a,#right a{
     text-decoration: none;
-    display: block;
+    display: flex;
     color: rgb(143, 77, 38);
     text-align: center;
-    /* margin: 2px 2px auto; */
+    margin: 2px 2px auto;
 }
-#left ul li a:hover{
+#left a:hover,#right a:hover{
     background-color:rgba(245, 222, 179, 0.7) ;
+}
+#left p,#right p{
+    display: block;
+    width: 80%;
+}
+#left span,#right span{
+    margin: auto auto auto 5px;
+    padding: 0;
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: url(../IMG/hot.png) ;
+    background-repeat: no-repeat;
+    background-size: 30px auto;
+    border-radius: 30px;
+}
+#left div #l1{
+    background-position: 0 -5px;
+}
+#left div #l2{
+    background-position: 0 -48px;
+}
+#left div #l3{
+    background-position: 0 -91px;
+}
+#left div #l4{
+    background-position: 0 -132px;
+}
+#left div #l5{
+    background-position: 0 -176px;
+}
+#right div #r1{
+    background-position: 0 -5px;
+}
+#right div #r2{
+    background-position: 0 -48px;
+}
+#right div #r3{
+    background-position: 0 -91px;
+}
+#right div #r4{
+    background-position: 0 -132px;
+}
+#right div #r5{
+    background-position: 0 -176px;
+}
+#right div #r6{
+    background-position: 0 -218px;
+}
+#right div #r7{
+    background-position: 0 -260px;
+}
+#right div #r8{
+    background-position: 0 -303px;
+}
+#right div #r9{
+    background-position: 0 -345px;
+}
+#right div #r10{
+    background-position: 0 -388px;
 }

@@ -1,6 +1,5 @@
 var E = window.wangEditor;
 var editor = new E('#editor');
-editor.create();
 editor.config.menus = [
     'head',  // 标题
     'bold',  // 粗体
@@ -23,7 +22,9 @@ editor.config.menus = [
     'undo',  // 撤销
     'redo'  // 重复
 ];
-editor.config.uploadImgUrl = '/upload';  // 上传图片到服务器
+
+editor.config.uploadImgServer = '/upload'
+// editor.config.showLinkImg = false
 // 3M
 editor.config.uploadImgMaxSize = 100 * 1024 * 1024
 // 限制一次最多上传 5 张图片
@@ -74,7 +75,33 @@ editor.config.uploadImgHooks = {
         // result 必须是一个 JSON 格式字符串！！！否则报错
     }
 }
-// 设置内容
-editor.txt.html(content);
-// 获取内容
-var content = editor.txt.html();
+
+
+//获取文本输入的内容
+document.getElementById('btn2').addEventListener('click', function () {
+      editor.txt.html(content);
+      var content = editor.txt.html();
+      console.log(content);
+      // 读取 text
+        var announcement_mag = editor.txt.text();
+        alert(announcement_mag)    
+      $.ajax({
+      url : "http://localhost:8080/User/inserAnnouncements?announcement_mag="+announcement_mag,
+      type : "post",
+      dataType : "json",
+      success : function(data) {
+          alert(data.result);
+          
+      },
+       error : function(msg) {
+              alert("ajax连接异常：" + msg);
+          }
+  });
+     
+}, false)
+// // 设置内容
+// editor.txt.html(content);
+// // 获取内容
+// var content = editor.txt.html();
+
+editor.create();

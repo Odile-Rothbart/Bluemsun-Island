@@ -11,37 +11,37 @@ function checkName2(event){
     }
 }
 username2.addEventListener("blur",checkName2,false);
-var password2=document.getElementById("password2");
-function checkPassword2(event){
-    var tippassword2=document.getElementById("tip-password2");
-    if(/[^0-9a-zA-Z]/.exec(password2.value)){
-        tippassword2.style.color="rgb(214, 72, 72)"
-        event.preventDefault();
-    }
-    else{
-        tippassword2.style.color="rgb(165, 84, 26)"
-    }
-}
-password2.addEventListener("blur",checkPassword2,false);
-var pass=document.getElementById("pass");
-function checkPass(event){
-    var tippass=document.getElementById("tip-pass");
-    if(pass.value!=password2.value){
-        tippass.innerHTML="两次输入的密码不同";
-        event.preventDefault();
-    }
-    else{
-        tippass.innerHTML="";
-    }
-}
-pass.addEventListener("blur",checkPass,false);
-var submit2=document.getElementById("submit2");
-function check2(event){
-    checkName2(event);
-    checkPassword2(event);
-    checkPass(event);
-}
-submit2.addEventListener("click",check2,false);
+// var password2=document.getElementById("password2");
+// function checkPassword2(event){
+//     var tippassword2=document.getElementById("tip-password2");
+//     if(/[^0-9a-zA-Z]/.exec(password2.value)){
+//         tippassword2.style.color="rgb(214, 72, 72)"
+//         event.preventDefault();
+//     }
+//     else{
+//         tippassword2.style.color="rgb(165, 84, 26)"
+//     }
+// }
+// password2.addEventListener("blur",checkPassword2,false);
+// var pass=document.getElementById("pass");
+// function checkPass(event){
+//     var tippass=document.getElementById("tip-pass");
+//     if(pass.value!=password2.value){
+//         tippass.innerHTML="两次输入的密码不同";
+//         event.preventDefault();
+//     }
+//     else{
+//         tippass.innerHTML="";
+//     }
+// }
+// pass.addEventListener("blur",checkPass,false);
+// var submit2=document.getElementById("submit2");
+// function check2(event){
+//     checkName2(event);
+//     checkPassword2(event);
+//     checkPass(event);
+// }
+// submit2.addEventListener("click",check2,false);
 // 交互
 window.onload = function(){
     $( "#dialog" ).dialog({
@@ -62,7 +62,7 @@ window.onload = function(){
     // }
     $.ajax({
         type: 'GET',
-        url:"http://windlinxy.top:8080/bluemsun_island/user",
+        url:"http://jojo.free.idcfengye.com/bluemsun_island/user",
         contentType: "application/json",
         headers:{
             "Authorization":token
@@ -79,7 +79,7 @@ window.onload = function(){
             if(data.status==1){
                 console.log(data)
                 console.log("身份认证成功");
-                $("#username2").attr('value',data.user.username2);
+                $("#username2").attr('value',data.user.username);
                 $("#password2").attr('value',data.user.password);
                 $("#tel").attr('value',data.user.phoneNumber);
                 $('.sex input:radio[name="sex"]:checked').attr('value',data.user.sex);
@@ -117,7 +117,7 @@ window.onload = function(){
             console.log(formdata.get("image"))
             $.ajax({
                 type: 'POST',
-                url:"http://windlinxy.top:8080/bluemsun_island/user/image",
+                url:"http://jojo.free.idcfengye.com/bluemsun_island/user/image",
                 headers:{
                     "Authorization":token
                 },
@@ -158,14 +158,14 @@ window.onload = function(){
         var tel=$("#tel").val();
         console.log(tel)
         var sex=$('.sex input:radio[name="sex"]:checked').val(); 
-        console.log(Number(sex)===1)
         var birthday=$("#birthday").val()
         console.log(birthday)
+        console.log(birthday==="2021-10-20")
         var signature=$("#signature").val()
         console.log(signature)
         var postDate={
             "username":username,
-            "password":password,
+            // "password":password,
             "phoneNumber":tel,
             "sex":Number(sex),
             "birthday":birthday,
@@ -174,7 +174,7 @@ window.onload = function(){
         console.log(postDate)
         $.ajax({
             type: 'PATCH',
-            url:"http://windlinxy.top:8080/bluemsun_island/users",
+            url:"http://jojo.free.idcfengye.com/bluemsun_island/users",
             headers:{
                 "Authorization":token
             },
