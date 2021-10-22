@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>蓝旭岛</title>
+    <link rel="stylesheet" href="../CSS/jquery-ui.min.css">
     <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/write.css">
     <script src="../JS/external/jquery/jquery.js"></script>
     <script src="../package/dist/wangEditor.min.js"></script>
 </head>
@@ -39,8 +41,12 @@
         </section>
         <section id="middle">
             <h1>写苇絮</h1>
+            <div class="input">
+                <label for="title">标题：</label>
+                <input type="text" name="title" id="title">
+            </div>
             <span class="col-lg-8" id="editor"></span>
-            <button id="btn2">发布！</button>
+            <input type="button" value="发布！" id="submit" class="submit">
         </section>
         <section id="right">
             <h3>热门苇絮</h3>
@@ -60,5 +66,5 @@
     </main>
 </body>
 <script src="../JS/header.js"></script>
-<script src="../JS/wirte.js"></script>
+<script src="../JS/write.js"></script>
 </html>

@@ -1,3 +1,4 @@
+// 交互
 var E = window.wangEditor;
 var editor = new E('#editor');
 editor.config.menus = [
@@ -78,15 +79,17 @@ editor.config.uploadImgHooks = {
 
 
 //获取文本输入的内容
-document.getElementById('btn2').addEventListener('click', function () {
+document.getElementById('submit').addEventListener('click', function () {
       editor.txt.html(content);
       var content = editor.txt.html();
+      var title=$("#title").val();
+      console.log(title)
       console.log(content);
       // 读取 text
         var announcement_mag = editor.txt.text();
         alert(announcement_mag)    
       $.ajax({
-      url : "http://localhost:8080/User/inserAnnouncements?announcement_mag="+announcement_mag,
+      url : "http://localhost:8080/User/inserAnnouncements?announcement_mag="+announcement_mag+"&title"+title,
       type : "post",
       dataType : "json",
       success : function(data) {
