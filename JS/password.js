@@ -23,7 +23,7 @@ function checkPass(event){
     }
 }
 pass.addEventListener("blur",checkPass,false);
-var submit=document.getElementById("submit2");
+var submit=document.getElementById("submit");
 function check2(event){
     checkPassword2(event);
     checkPass(event);
@@ -54,7 +54,7 @@ window.onload = function(){
         console.log(postDate)
         $.ajax({
             type: 'PATCH',
-            url:"",
+            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users",
             headers:{
                 "Authorization":token
             },

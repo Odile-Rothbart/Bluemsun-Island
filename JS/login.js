@@ -52,7 +52,7 @@ $(document).ready(function(){
         console.log(postDate)
         $.ajax({
             type: 'POST',
-            url:"http://jojo.free.idcfengye.com/bluemsun_island/users/token",
+            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users/token",
             contentType: "application/json",
             data:JSON.stringify(postDate),
             error: function() {
@@ -146,7 +146,7 @@ $(document).ready(function(){
         console.log(postDate)
         $.ajax({
             type: 'POST',
-            url:"http://jojo.free.idcfengye.com/bluemsun_island/users",
+            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users",
             contentType: "application/json",
             data:JSON.stringify(postDate),
             error: function() {

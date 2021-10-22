@@ -31,7 +31,7 @@ window.onload = function(){
     // }
     $.ajax({
         type: 'GET',
-        url:"http://jojo.free.idcfengye.com/bluemsun_island/user",
+        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/user",
         contentType: "application/json",
         headers:{
             "Authorization":token
@@ -48,12 +48,14 @@ window.onload = function(){
             if(data.status==1){
                 console.log(data)
                 console.log("身份认证成功");
+                console.log(data.user.sex)
+                console.log(data.user.signature)
                 $("#username2").attr('value',data.user.username);
                 $("#password2").attr('value',data.user.password);
                 $("#tel").attr('value',data.user.phoneNumber);
-                $('.sex input:radio[name="sex"]:checked').attr('value',data.user.sex);
+                $(`input[name='sex'][value=${data.user.sex}]`).attr("checked",true); 
                 $("#birthday").attr('value',data.user.birthday);
-                $("#signature").attr('value',data.user.signature);
+                $("#signature").val(data.user.signature);
                 console.log(data.user.imageUrl)
                 document.getElementById("show").innerHTML = `<img src="${data.user.imageUrl}" width="150px" height="150px">`
             }
@@ -86,7 +88,7 @@ window.onload = function(){
             console.log(formdata.get("image"))
             $.ajax({
                 type: 'POST',
-                url:"http://jojo.free.idcfengye.com/bluemsun_island/user/image",
+                url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/user/image",
                 headers:{
                     "Authorization":token
                 },
@@ -123,18 +125,14 @@ window.onload = function(){
     })
     $("#submit2").click(function(){
         var username=$("#username2").val();
-        var password=$("#password2").val();
         var tel=$("#tel").val();
-        console.log(tel)
         var sex=$('.sex input:radio[name="sex"]:checked').val(); 
         var birthday=$("#birthday").val()
         console.log(birthday)
-        console.log(birthday==="2021-10-20")
         var signature=$("#signature").val()
         console.log(signature)
         var postDate={
             "username":username,
-            // "password":password,
             "phoneNumber":tel,
             "sex":Number(sex),
             "birthday":birthday,
@@ -143,7 +141,7 @@ window.onload = function(){
         console.log(postDate)
         $.ajax({
             type: 'PATCH',
-            url:"http://jojo.free.idcfengye.com/bluemsun_island/users",
+            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users",
             headers:{
                 "Authorization":token
             },
