@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>蓝旭岛</title>
     <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/home.css">
     <script src="../JS/external/jquery/jquery.js"></script>
 </head>
 <body>
     <header>
         <div id="input">
-            <input type="text">
-            <button>搜索</button>
+            <input type="text" id="searchtext">
+            <input type="button" value="搜索" id="search">
         </div>
         <div id="all">
             <div><a href="#"><span id="nav1"></span><p>主页</p></a></div>
@@ -38,6 +39,27 @@
         </section>
         <section id="middle">
             <h1>全部关注</h1>
+            <div class="container">
+                <div id="data">
+                    <div class="data">
+                        <div class="user">
+                            <span><img src="../IMG/岛.png" alt="" width="40px" height="40px"></span><p>用户名</p>
+                        </div>
+                        <div>
+                            <p>主要内容：巴拉巴拉巴拉巴拉巴拉</p>
+                        </div>
+                        <div class="time">
+                            <p>时间</p>
+                        </div>
+                        <div class="point">
+                            <div><span class="p1"></span><p>100</p></div>
+                            <div><span class="p2"></span><p>20</p></div>
+                            <div><span class="p3"></span><p>50</p></div>
+                        </div>
+                </div>
+                <div id="pager">
+                </div>
+            </div>
         </section>
         <section id="right">
             <h3>热门苇絮</h3>
@@ -57,4 +79,8 @@
     </main>
 </body>
 <script src="../JS/header.js"></script>
+<script src="../JS/home.js"></script>
+<script>
+    window.createPager();
+</script>
 </html>

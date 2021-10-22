@@ -84,11 +84,11 @@ window.onload = function(){
             var file =$("#file")[0].files[0];
             console.log(file)
             var formdata = new FormData();
-            formdata.append('image', file);
-            console.log(formdata.get("image"))
+            formdata.append('portrait', file);
+            console.log(formdata.get("portrait"))
             $.ajax({
                 type: 'POST',
-                url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/user/image",
+                url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/user/portraits",
                 headers:{
                     "Authorization":token
                 },
