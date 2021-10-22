@@ -11,37 +11,6 @@ function checkName2(event){
     }
 }
 username2.addEventListener("blur",checkName2,false);
-// var password2=document.getElementById("password2");
-// function checkPassword2(event){
-//     var tippassword2=document.getElementById("tip-password2");
-//     if(/[^0-9a-zA-Z]/.exec(password2.value)){
-//         tippassword2.style.color="rgb(214, 72, 72)"
-//         event.preventDefault();
-//     }
-//     else{
-//         tippassword2.style.color="rgb(165, 84, 26)"
-//     }
-// }
-// password2.addEventListener("blur",checkPassword2,false);
-// var pass=document.getElementById("pass");
-// function checkPass(event){
-//     var tippass=document.getElementById("tip-pass");
-//     if(pass.value!=password2.value){
-//         tippass.innerHTML="两次输入的密码不同";
-//         event.preventDefault();
-//     }
-//     else{
-//         tippass.innerHTML="";
-//     }
-// }
-// pass.addEventListener("blur",checkPass,false);
-// var submit2=document.getElementById("submit2");
-// function check2(event){
-//     checkName2(event);
-//     checkPassword2(event);
-//     checkPass(event);
-// }
-// submit2.addEventListener("click",check2,false);
 // 交互
 window.onload = function(){
     $( "#dialog" ).dialog({
