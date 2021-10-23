@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>蓝旭岛</title>
+    <link rel="stylesheet" href="../CSS/jquery-ui.min.css">
     <link rel="stylesheet" href="../CSS/administrators.css">
     <script src="../JS/external/jquery/jquery.js"></script>
+    <script src="../JS/jquery-ui.min.js"></script>
 </head>
 <body>
     <header>
@@ -29,47 +31,15 @@
             <h1>全部用户</h1>
             <div class="container">
                 <div id="data">
-                    <div class="data">
-                        <div class="user">
-                            <span><img src="../IMG/岛.png" alt="" width="40px" height="40px"></span>
-                            <p>用户名</p>
-                            <p>版主</p>
-                        </div>
-                        <div class="point">
-                            <input type="button" value="封禁" id="ban"> 
-                            <input type="button" value="解除" id="relieve">
-                            <input type="button" value="删除" id="delete">
-                        </div>
-                    </div>
-                    <div class="data">
-                        <div class="user">
-                            <span><img src="../IMG/岛.png" alt="" width="40px" height="40px"></span>
-                            <p>用户名</p>
-                            <p>普通用户</p>
-                        </div>
-                        <div class="point">
-                            <input type="button" value="封禁" id="ban">
-                            <input type="button" value="解除" id="relieve">
-                            <input type="button" value="删除" id="delete">
-                        </div>
-                    </div>
-                    <div class="data">
-                        <div class="user">
-                            <span><img src="../IMG/岛.png" alt="" width="40px" height="40px"></span>
-                            <p>用户名</p>
-                            <p>普通用户</p>
-                        </div>
-                        <div class="point">
-                            <input type="button" value="封禁" id="ban">
-                            <input type="button" value="解除" id="relieve">
-                            <input type="button" value="删除" id="delete">
-                        </div>
-                    </div>
+                </div>
                 <div id="pager">
                 </div>
         </section>
     </main>
 </body>
+<div id="dialog" title="提示">
+    <p></p>
+</div>
 <script src="../JS/header.js"></script>
 <script src="../JS/administrators.js"></script>
 <script>

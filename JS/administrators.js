@@ -1,6 +1,15 @@
-var res;
-
 (function(window){
+    $( "#dialog" ).dialog({
+        autoOpen: false,
+        show: {
+          effect: "blind",
+          duration: 1000
+        },
+        hide: {
+          effect: "explode",
+          duration: 1000
+        }
+      });
     var defaultPager = {
         currentPage: 1,     //现在页数
         limit: 9,           //每页的数据个数
@@ -23,41 +32,74 @@ var res;
     search.addEventListener("click",searchall,false);
     
     function request(pager){
-        var xhr = new XMLHttpRequest();
-        xhr.open("post", ``);
-        xhr.withCredentials=true;
-        xhr.send(JSON.stringify({
-            curPage:pager.currentPage,
-            pageSize:pager.limit,
-            search:pager.search
-        }));
-        xhr.onreadystatechange = function(){
-            if(xhr.readyState === 4 && xhr.status === 200){
-                 res = JSON.parse(xhr.responseText);
-                console.log(res.msg);
-                console.log(res.status);
-                pager.total = res.productDate.totalRecord;
-                pager.pageNumber = Math.ceil(pager.total/ pager.limit);
-                adddata(res);
-                show(pager);
+        var token= localStorage.getItem("token");
+        console.log(token)
+        // var postDate={
+        //     "cur":pager.currentPage,
+        //     "size":pager.limit
+        // }
+        $.ajax({
+            type: 'GET',
+            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
+            headers:{
+                "Authorization":token
+            },
+            contentType: "application/json",
+            // data:JSON.stringify(postDate),
+            error: function() {
+                $("#dialog p").html("信息加载失败")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    location.href="../HTML/login.html";
+                },3000);
+            },
+            success: function(data) {
+                if(data.status==1){
+                    console.log(data)
+                    pager.total = data.page.totalRecord;
+                    pager.pageNumber = Math.ceil(pager.total/ pager.limit);
+                    // 渲染当前页面数据
+    
+                    var dataHtml = "";
+                    for(var item=0;item< data.page.list.length;item++){
+                        if(data.page.list[item].identifyId==0){
+                            data.page.list[item].identifyId="普通用户"
+                        }
+                        if(data.page.list[item].identifyId==1){
+                            data.page.list[item].identifyId="版主"
+                        }
+                        if(data.page.list[item].identifyId==-1){
+                            data.page.list[item].identifyId="管理员"
+                        }
+                        dataHtml += `<div class="data">
+                                        <div class="user">
+                                            <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
+                                            <p>${data.page.list[item].username}</p>
+                                            <p>${data.page.list[item].identifyId}</p>
+                                        </div>
+                                        <div class="point">
+                                            <input type="button" value="封禁" id="ban${data.page.list[item].id}" onclick="banuser(${data.page.list[item].id},${data.page.list[item].status})"> 
+                                            <input type="button" value="解除" class="relieve" id="relieve${data.page.list[item].id}" onclick="relieveuser(${data.page.list[item].id})">
+                                            <input type="button" value="删除" id="delete${data.page.list[item].id}" onclick="deleteuser(${data.page.list[item].id})">
+                                        </div>
+                                    </div>`
+                    }
+                    document.getElementById("data").innerHTML = dataHtml;
+                    show(pager);
+                }
+                else{
+                    console.log(data)
+                    $("#dialog p").html("信息加载失败")
+                    $( "#dialog" ).dialog( "open" );
+                    setTimeout(function(){
+                        location.href="../HTML/login.html";
+                    },3000);
+                }
             }
-        }
+        });
     }
 
-    // 渲染当前页面数据
-    function adddata(res){
-        var dataHtml = "";
-        for(var item=0;item< res.productDate.list.length;item++){
-            dataHtml += `<div class="data">
-            <img src="${res.productDate.list[item].product_photo}" width="30%" height="60%">
-            <span>${res.productDate.list[item].product_name}</span>
-            <span>价格：${res.productDate.list[item].product_price}</span>
-            <span>仅剩：${res.productDate.list[item].product_num}件</span>
-            <button id="${item}">查看详情</button>
-            </div>`
-        }
-        document.getElementById("data").innerHTML = dataHtml;
-    }
+    
     // 展示页码框
     function show(pager){
         var min,max;
@@ -135,3 +177,118 @@ var res;
 
     window.createPager = createPager;
 })(window)
+// 用户删除
+function deleteuser(data){
+    var token= localStorage.getItem("token");
+    console.log(token)
+    $.ajax({
+        type: 'DELETE',
+        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users/:"+data,
+        headers:{
+            "Authorization":token
+        },
+        contentType: "application/json",
+        error: function() {
+            $("#dialog p").html("删除失败，请重试")
+            $( "#dialog" ).dialog( "open" );
+            setTimeout(function(){
+                $( "#dialog" ).dialog( "close" );
+            },2000);
+        },
+        success: function(data) {
+            if(data.status==1){
+                $("#dialog p").html("删除成功")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                    history.go(0)
+                 },2000);
+            }
+            else{
+                console.log(data)
+                $("#dialog p").html("删除失败，请重试")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                },2000);
+            }
+        }
+    });
+}
+// 用户封禁
+function banuser(data1,data2){
+    $("#ban"+data1).hide()
+    $("#relieve"+data1).show()
+    var token= localStorage.getItem("token");
+    console.log(token)
+    $.ajax({
+        type: 'PATCH',
+        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users/:"+data1+"/:"+data2,
+        headers:{
+            "Authorization":token
+        },
+        contentType: "application/json",
+        error: function() {
+            $("#dialog p").html("封禁失败，请重试")
+            $( "#dialog" ).dialog( "open" );
+            setTimeout(function(){
+                $( "#dialog" ).dialog( "close" );
+            },2000);
+        },
+        success: function(data) {
+            if(data.status==1){
+                $("#dialog p").html("封禁成功")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                 },3000);
+            }
+            else{
+                console.log(data)
+                $("#dialog p").html("封禁失败，请重试")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                },2000);
+            }
+        }
+    });
+}
+function relieveuser(data1,data2){
+    $("#ban"+data1).show()
+    $("#relieve"+data1).hide()
+    var token= localStorage.getItem("token");
+    console.log(token)
+    $.ajax({
+        type: 'DELETE',
+        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users/:"+data1+"/:"+data2,
+        headers:{
+            "Authorization":token
+        },
+        contentType: "application/json",
+        error: function() {
+            $("#dialog p").html("解禁失败，请重试")
+            $( "#dialog" ).dialog( "open" );
+            setTimeout(function(){
+                $( "#dialog" ).dialog( "close" );
+            },2000);
+        },
+        success: function(data) {
+            if(data.status==1){
+                $("#dialog p").html("解禁成功")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                 },3000);
+            }
+            else{
+                console.log(data)
+                $("#dialog p").html("解禁失败，请重试")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                },2000);
+            }
+        }
+    });
+}

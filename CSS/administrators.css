@@ -1,3 +1,4 @@
+/* header */
 *{
     box-sizing: border-box;
     margin: 0 auto;
@@ -131,4 +132,24 @@ main{
     text-align: center;
     background-color: rgba(143, 77, 38, 0.7);
     color: white;
+}
+.data .point .relieve{
+    display: none;
+}
+/* 分页页码框 */
+#pager{
+    display: flex;
+    justify-content: center;
+}
+#pager div{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 8px;
+}
+div.selected{
+    background-color: rgb(143, 77, 38);
+    color: white;
+}
+div.omit{
+    color: #999;
 }

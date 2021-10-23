@@ -23,15 +23,17 @@ editor.config.menus = [
     'undo',  // 撤销
     'redo'  // 重复
 ];
-
-editor.config.uploadImgServer = '/upload'
+editor.config.uploadImgHeaders = {
+    Authorization: localStorage.getItem('token') // 设置请求头
+}
+editor.config.uploadImgServer = 'http://jojo.vipgz1.idcfengye.com/bluemsun_island/post/images'
 // editor.config.showLinkImg = false
 // 3M
 editor.config.uploadImgMaxSize = 100 * 1024 * 1024
 // 限制一次最多上传 5 张图片
 editor.config.uploadImgMaxLength = 3
 // 自定义文件名
-editor.config.uploadFileName = 'editor_img';
+editor.config.uploadFileName = 'image';
 // 将 timeout 时间改为 3s
 editor.config.uploadImgTimeout = 5000;
 
@@ -71,7 +73,8 @@ editor.config.uploadImgHooks = {
         // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
         // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
         // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
-        var url = result.data[0];
+        console.log(result)
+        var url = result.imageUrl;
         insertImg(url);
         // result 必须是一个 JSON 格式字符串！！！否则报错
     }
@@ -89,7 +92,7 @@ document.getElementById('submit').addEventListener('click', function () {
         var announcement_mag = editor.txt.text();
         alert(announcement_mag)    
       $.ajax({
-      url : "http://localhost:8080/User/inserAnnouncements?announcement_mag="+announcement_mag+"&title"+title,
+      url : "http://jojo.vipgz1.idcfengye.com/bluemsun_island/posts?announcement_mag="+announcement_mag+"&title="+title,
       type : "post",
       dataType : "json",
       success : function(data) {
