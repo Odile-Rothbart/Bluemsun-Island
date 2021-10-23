@@ -5,18 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>蓝旭岛</title>
+    <link rel="stylesheet" href="../CSS/jquery-ui.min.css">
     <link rel="stylesheet" href="../CSS/header.css">
-    <link rel="stylesheet" href="../CSS/home.css">
+    <link rel="stylesheet" href="../CSS/usermsg.css">
     <script src="../JS/external/jquery/jquery.js"></script>
+    <script src="../JS/jquery-ui.min.js"></script>
 </head>
 <body>
     <header>
         <div id="input">
-            <input type="text" id="searchtext">
+            <input type="text">
             <input type="button" value="搜索" id="search">
         </div>
         <div id="all">
-            <div><a href="#"><span id="nav1"></span><p>主页</p></a></div>
+            <div><a href="./home.html"><span id="nav1"></span><p>主页</p></a></div>
             <div><a href="./history.html"><span id="nav2"></span><p>已发苇絮</p></a></div>
             <div><a href="./write.html"><span id="nav3"></span><p>写苇絮</p></a></div>
             <div><a href="./notice.html"><span id="nav4"></span><p>评论</p></a></div>
@@ -28,40 +30,39 @@
     </header>
     <main>
         <section id="left">
-            <h3>热门田地</h3>
-            <div>
-                <div><a href="#"><span id="l1"></span><p>榜一</p></a></div>
-                <div><a href="#"><span id="l2"></span><p>榜二</p></a></div>
-                <div><a href="#"><span id="l3"></span><p>榜三</p></a></div>
-                <div><a href="#"><span id="l4"></span><p>榜四</p></a></div>
-                <div><a href="#"><span id="l5"></span><p>榜五</p></a></div>
-            </div>
+            <ul>
+                <li><a href="./mine.html">我的主页</a></li>
+                <li><a href="#">我的关注</a></li>
+                <li><a href="#">我的粉丝</a></li>
+                <li><a href="#">我的收藏</a></li>
+                <li><a href="#">我的评论</a></li>
+                <li><a href="#">收到的赞</a></li>
+                <li><a href="./password.html">更改密码</a></li>
+                <li><a href="./usermsg.html">个人信息管理</a></li>
+                <li><a href="./apply.html">申请新的田地</a></li>
+            </ul>
         </section>
         <section id="middle">
-            <h1>全部关注</h1>
-            <div class="container">
-                <div id="data">
-                    <div class="data">
-                        <div class="user">
-                            <span><img src="../IMG/岛.png" alt="" width="40px" height="40px"></span>
-                            <p>用户名</p>
-                            <a href="#" class="plate"><p>田地</p></a>
-                        </div>
-                        <div>
-                            <p>主要内容：巴拉巴拉巴拉巴拉巴拉</p>
-                        </div>
-                        <div class="time">
-                            <p>时间</p>
-                        </div>
-                        <div class="point">
-                            <div><span class="p1"></span><p>100</p></div>
-                            <div><span class="p2"></span><p>20</p></div>
-                            <div><span class="p3"></span><p>50</p></div>
-                        </div>
+            <h1>申请新的田地</h1>
+            <form >
+                <div class="file">
+                    <label>头像:</label>
+                    <div id="show">
+                        
+                    </div>
+                    <input type="file" name="file" id="file" multiple>
+                    <input type="button" id="submit1" value="提交" class="submit">
                 </div>
-                <div id="pager">
+                <div class="input">
+                    <label for="username">田地名:</label>
+                    <input type="text" name="username" id="username" placeholder="田地名">
                 </div>
-            </div>
+                <div class="input">
+                    <label for="signature" class="sign">田地简介:</label>
+                    <textarea name="signature" id="signature" cols="30" rows="10" placeholder="这块田地还没有简介"></textarea>
+                </div>
+                <input type="button" value="立即申请" id="submit2" class="submit">
+            </form>
         </section>
         <section id="right">
             <h3>热门苇絮</h3>
@@ -79,10 +80,10 @@
                 </div>
         </section>
     </main>
+    <div id="dialog" title="提示">
+        <p></p>
+    </div>
 </body>
 <script src="../JS/header.js"></script>
-<script src="../JS/home.js"></script>
-<script>
-    window.createPager();
-</script>
+<script src="../JS/apply.js"></script>
 </html>

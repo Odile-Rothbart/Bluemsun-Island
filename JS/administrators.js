@@ -71,6 +71,16 @@
                         if(data.page.list[item].identifyId==-1){
                             data.page.list[item].identifyId="管理员"
                         }
+                        if(data.page.list[item].status==-1){
+                            console.log(-1)
+                            $(`#relieve${data.page.list[item].id}`).show()
+                            $(`#ban${data.page.list[item].id}`).hide()
+                        }
+                        if(data.page.list[item].status==0){
+                            console.log(0)
+                            $(`#relieve${data.page.list[item].id}`).hide()
+                            $(`#ban${data.page.list[item].id}`).show()
+                        }
                         dataHtml += `<div class="data">
                                         <div class="user">
                                             <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
@@ -79,7 +89,7 @@
                                         </div>
                                         <div class="point">
                                             <input type="button" value="封禁" id="ban${data.page.list[item].id}" onclick="banuser(${data.page.list[item].id},${data.page.list[item].status})"> 
-                                            <input type="button" value="解除" class="relieve" id="relieve${data.page.list[item].id}" onclick="relieveuser(${data.page.list[item].id})">
+                                            <input type="button" value="解除" class="relieve" id="relieve${data.page.list[item].id}" onclick="relieveuser(${data.page.list[item].id},${data.page.list[item].status})">
                                             <input type="button" value="删除" id="delete${data.page.list[item].id}" onclick="deleteuser(${data.page.list[item].id})">
                                         </div>
                                     </div>`

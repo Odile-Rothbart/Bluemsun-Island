@@ -60,3 +60,7 @@
 .data .point .p3{
     background-position: -260px -140px;
 }
+.data .user .plate{
+    text-decoration: none;
+    color:rgb(143, 77, 38) ;
+}

@@ -1,16 +1,3 @@
-// 验证
-var username=document.getElementById("username");
-function checkName(event){
-    var tipname=document.getElementById("tip-name");
-    if(/^[^A-Z]/.exec(username.value)){
-        tipname.style.color="rgb(214, 72, 72)"
-        event.preventDefault();
-    }
-    else{
-        tipname.style.color="rgb(165, 84, 26)"
-    }
-}
-username.addEventListener("blur",checkName,false);
 // 交互
 window.onload = function(){
     $( "#dialog" ).dialog({
@@ -48,15 +35,6 @@ window.onload = function(){
             if(data.status==1){
                 console.log(data)
                 console.log("身份认证成功");
-                console.log(data.user.sex)
-                console.log(data.user.signature)
-                $("#username").attr('value',data.user.username);
-                $("#tel").attr('value',data.user.phoneNumber);
-                $(`input[name='sex'][value=${data.user.sex}]`).attr("checked",true); 
-                $("#birthday").attr('value',data.user.birthday);
-                $("#signature").val(data.user.signature);
-                console.log(data.user.imageUrl)
-                document.getElementById("show").innerHTML = `<img src="${data.user.imageUrl}" width="150px" height="150px">`
             }
             else{
                 console.log(data)
@@ -124,10 +102,6 @@ window.onload = function(){
     })
     $("#submit2").click(function(){
         var username=$("#username").val();
-        var tel=$("#tel").val();
-        var sex=$('.sex input:radio[name="sex"]:checked').val(); 
-        var birthday=$("#birthday").val()
-        console.log(birthday)
         var signature=$("#signature").val()
         console.log(signature)
         var postDate={
@@ -139,15 +113,15 @@ window.onload = function(){
         }
         console.log(postDate)
         $.ajax({
-            type: 'PATCH',
-            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users",
+            type: 'POST',
+            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/sections",
             headers:{
                 "Authorization":token
             },
             contentType: "application/json",
             data:JSON.stringify(postDate),
             error: function() {
-                $("#dialog p").html("抱歉，信息修改失败")
+                $("#dialog p").html("申请失败，请重试")
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){
                     $( "#dialog" ).dialog( "close" );
@@ -156,7 +130,7 @@ window.onload = function(){
             success: function(data) {
                 if(data.status==1){
                     console.log(data)
-                    $("#dialog p").html("信息修改成功！")
+                    $("#dialog p").html("申请成功!")
                     $( "#dialog" ).dialog( "open" );
                     setTimeout(function(){
                         $( "#dialog" ).dialog( "close" );
@@ -164,7 +138,7 @@ window.onload = function(){
                 }
                 else{
                     console.log(data)
-                    $("#dialog p").html("抱歉，信息修改失败")
+                    $("#dialog p").html("申请失败，请重试")
                     $( "#dialog" ).dialog( "open" );
                     setTimeout(function(){
                         $( "#dialog" ).dialog( "close" );
