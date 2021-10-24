@@ -46,6 +46,7 @@ window.onload = function(){
             }
         }
     });
+    var imageUrl
     $("#file").change(function(){
         var file = document.getElementById("file").files[0];
         console.log(file)
@@ -82,6 +83,7 @@ window.onload = function(){
                 success: function(data) {
                     if(data.status==1){
                         console.log(data)
+                        imageUrl=data.imageUrl
                         $("#dialog p").html("图片上传成功！")
                         $( "#dialog" ).dialog( "open" );
                         setTimeout(function(){
@@ -105,11 +107,9 @@ window.onload = function(){
         var signature=$("#signature").val()
         console.log(signature)
         var postDate={
-            "username":username,
-            "phoneNumber":tel,
-            "sex":Number(sex),
-            "birthday":birthday,
-            "signature":signature
+            "sectionName":username,
+            "description":signature,
+            "imageUrl":imageUrl
         }
         console.log(postDate)
         $.ajax({

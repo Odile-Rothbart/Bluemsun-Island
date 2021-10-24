@@ -1,0 +1,152 @@
+/* header */
+*{
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+}
+body{
+    background-color: rgb(255, 255, 255);
+}
+header{
+    background-color: rgba(239, 232, 213, 0.7);
+    /* position: sticky;
+    top: 0px; */
+    width: 100%;
+    margin: 0 auto;
+    padding: 5px;
+    z-index: 9999;
+    display: flex;
+    box-shadow: 0px -5px 15px rgba(239, 232, 213, 0.7) ;
+}
+header h1{
+    color: rgb(165, 84, 26);
+    font-family: 仿宋;
+    font-size: xx-large;
+    margin: auto auto auto 15%;
+}
+#input{
+    display: flex;
+    width: 30%;
+    height: 100%;
+    margin: auto 10% auto auto;
+    padding: 4px;
+}
+#input input{
+    width: 70%;
+    height: 30px;
+    line-height: 30px;
+    margin: 2px auto;
+    border-radius: 20px;
+    background-color: white;
+}
+#input #search{
+    width: 20%;
+    margin: 2px auto;
+    border-radius: 20px;
+    text-align: center;
+    background-color: rgba(143, 77, 38, 0.7);
+    color: white;
+}
+main{
+    display: flex;
+    width: 100%;
+}
+#left{
+    margin: 5px auto;
+    border-radius: 5px;
+    width: 20%;
+    background-color: rgba(245, 222, 179, 0.7);
+    height: 500px;
+}
+#middle{
+    width: 75%;
+    height: 100%;
+    margin: 5px auto;
+    border-radius: 5px;
+    background-color: rgba(245, 245, 245, 0.7)
+}
+#middle h1{
+    color: rgb(165, 84, 26);
+    font-family: 仿宋;
+    font-size: xx-large;
+    margin: 5px 0 10px 0;
+}
+#left ul{
+    border-radius: 5px;
+}
+#left ul li{
+    display: block;
+    width: 100%;
+    background-color: whitesmoke;
+    height: 40px;
+    line-height: 40px;
+}
+#left ul li a{
+    text-decoration: none;
+    display: block;
+    color: rgb(143, 77, 38);
+    text-align: center;
+    margin: 2px 2px auto;
+}
+#left ul li a:hover{
+    background-color:rgba(245, 222, 179, 0.7) ;
+}
+/* 田地 */
+#data{
+    display: flex;
+    flex-wrap: wrap;
+}
+.data{
+    width: 45%;
+    background-color: white;
+    border-radius: 5px;
+    border: solid 0.2em rgb(143, 77, 38);
+    margin: 10px auto;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.data div{
+    display: flex;
+}
+.data .user{
+    margin: 5px auto 5px 10px;
+}
+.user img{
+    border-radius: 40px;
+}
+.user p{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    display: block;
+    margin: 0 auto 0 10px;
+}
+.data .point{
+    width: 100%;
+}
+.data .point input{
+    width: 20%;
+    margin: 2px auto;
+    border-radius: 20px;
+    text-align: center;
+    background-color: rgba(143, 77, 38, 0.7);
+    color: white;
+}
+/* 分页页码框 */
+#pager{
+    display: flex;
+    justify-content: center;
+}
+#pager div{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 8px;
+}
+div.selected{
+    background-color: rgb(143, 77, 38);
+    color: white;
+}
+div.omit{
+    color: #999;
+}

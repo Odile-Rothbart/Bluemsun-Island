@@ -124,6 +124,7 @@ footer div p{
 		}
 body{
     background: url(../IMG/岛.png);
+	background-size:  cover;
 }
 /* 表格 */
 form{

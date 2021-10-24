@@ -35,10 +35,12 @@ submit1.addEventListener("click",check1,false);
 function setbody1(){
     console.log(1)
     $("body").css("background","url(../IMG/岛.png)");
+    $("body").css("background-size","cover")
 }
 function setbody2(){
     console.log(2)
     $("body").css("background","url(../IMG/GB.jpg)");
+    $("body").css("background-size","cover")
 }
 // 登录交互
 $(document).ready(function(){
@@ -85,7 +87,7 @@ $(document).ready(function(){
                         location.href="../HTML/administrators.html";
                      },3000);
                 }
-                else{
+                if(data.status==0){
                     console.log(data)
                     $("#dialog p").html("登录失败！请重新登录")
                     $( "#dialog" ).dialog( "open" );
