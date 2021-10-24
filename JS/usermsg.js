@@ -1,16 +1,3 @@
-// 验证
-var username=document.getElementById("username");
-function checkName(event){
-    var tipname=document.getElementById("tip-name");
-    if(/^[^A-Z]/.exec(username.value)){
-        tipname.style.color="rgb(214, 72, 72)"
-        event.preventDefault();
-    }
-    else{
-        tipname.style.color="rgb(165, 84, 26)"
-    }
-}
-username.addEventListener("blur",checkName,false);
 // 交互
 window.onload = function(){
     $( "#dialog" ).dialog({

@@ -62,6 +62,7 @@
     
                     var dataHtml = "";
                     for(var item=0;item< data.page.list.length;item++){
+                        var status
                         if(data.page.list[item].identifyId==0){
                             data.page.list[item].identifyId="普通用户"
                         }
@@ -72,14 +73,11 @@
                             data.page.list[item].identifyId="管理员"
                         }
                         if(data.page.list[item].status==-1){
-                            console.log(-1)
-                            $(`#relieve${data.page.list[item].id}`).show()
-                            $(`#ban${data.page.list[item].id}`).hide()
+                            status="解禁"
                         }
                         if(data.page.list[item].status==0){
                             console.log(0)
-                            $(`#relieve${data.page.list[item].id}`).hide()
-                            $(`#ban${data.page.list[item].id}`).show()
+                            status="封禁"
                         }
                         dataHtml += `<div class="data">
                                         <div class="user">
@@ -88,8 +86,7 @@
                                             <p>${data.page.list[item].identifyId}</p>
                                         </div>
                                         <div class="point">
-                                            <input type="button" value="封禁" id="ban${data.page.list[item].id}" onclick="banuser(${data.page.list[item].id},${data.page.list[item].status})"> 
-                                            <input type="button" value="解除" class="relieve" id="relieve${data.page.list[item].id}" onclick="relieveuser(${data.page.list[item].id},${data.page.list[item].status})">
+                                            <input type="button" value="${status}" id="ban${data.page.list[item].id}" onclick="banuser(${data.page.list[item].id},${data.page.list[item].status})"> 
                                             <input type="button" value="删除" id="delete${data.page.list[item].id}" onclick="deleteuser(${data.page.list[item].id})">
                                         </div>
                                     </div>`
@@ -227,10 +224,14 @@ function deleteuser(data){
 }
 // 用户封禁
 function banuser(data1,data2){
-    $("#ban"+data1).hide()
-    $("#relieve"+data1).show()
     var token= localStorage.getItem("token");
     console.log(token)
+    if(data2==-1){
+        data2=0
+    }
+    else{
+        data2=-1
+    }
     $.ajax({
         type: 'PATCH',
         url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users/:"+data1+"/:"+data2,
@@ -239,61 +240,35 @@ function banuser(data1,data2){
         },
         contentType: "application/json",
         error: function() {
-            $("#dialog p").html("封禁失败，请重试")
+            $("#dialog p").html("失败，请重试")
             $( "#dialog" ).dialog( "open" );
             setTimeout(function(){
                 $( "#dialog" ).dialog( "close" );
             },2000);
         },
         success: function(data) {
-            if(data.status==1){
-                $("#dialog p").html("封禁成功")
-                $( "#dialog" ).dialog( "open" );
-                setTimeout(function(){
-                    $( "#dialog" ).dialog( "close" );
-                 },3000);
-            }
-            else{
-                console.log(data)
-                $("#dialog p").html("封禁失败，请重试")
-                $( "#dialog" ).dialog( "open" );
-                setTimeout(function(){
-                    $( "#dialog" ).dialog( "close" );
-                },2000);
-            }
-        }
-    });
-}
-function relieveuser(data1,data2){
-    $("#ban"+data1).show()
-    $("#relieve"+data1).hide()
-    var token= localStorage.getItem("token");
-    console.log(token)
-    $.ajax({
-        type: 'DELETE',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users/:"+data1+"/:"+data2,
-        headers:{
-            "Authorization":token
-        },
-        contentType: "application/json",
-        error: function() {
-            $("#dialog p").html("解禁失败，请重试")
-            $( "#dialog" ).dialog( "open" );
-            setTimeout(function(){
-                $( "#dialog" ).dialog( "close" );
-            },2000);
-        },
-        success: function(data) {
-            if(data.status==1){
+            console.log(data)
+            if(data.status==1&&data.userStatus==0){
+                $("#ban"+data1).val("封禁")
                 $("#dialog p").html("解禁成功")
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){
                     $( "#dialog" ).dialog( "close" );
-                 },3000);
+                    history.go(0)
+                 },2000);
             }
-            else{
+            if(data.status==1&&data.userStatus==-1){
+                $("#ban"+data1).val("解禁")
+                $("#dialog p").html("封禁成功")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                    history.go(0)
+                 },2000);
+            }
+            if(data.status==0){
                 console.log(data)
-                $("#dialog p").html("解禁失败，请重试")
+                $("#dialog p").html("失败，请重试")
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){
                     $( "#dialog" ).dialog( "close" );

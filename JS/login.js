@@ -63,7 +63,7 @@ $(document).ready(function(){
                 },2000);
             },
             success: function(data) {
-                if(data.status==1){
+                if(data.status==1&&data.user.identifyId==0){
                     console.log(data)
                     localStorage.setItem("token",data.Authorization);
                     // var token= localStorage.getItem("token");
@@ -72,6 +72,17 @@ $(document).ready(function(){
                     $( "#dialog" ).dialog( "open" );
                     setTimeout(function(){
                         location.href="../HTML/home.html";
+                     },3000);
+                }
+                if(data.status==1&&data.user.identifyId==-1){
+                    console.log(data)
+                    localStorage.setItem("token",data.Authorization);
+                    // var token= localStorage.getItem("token");
+                    // console.log(token)
+                    $("#dialog p").html("管理员登录成功！三秒后跳转首页")
+                    $( "#dialog" ).dialog( "open" );
+                    setTimeout(function(){
+                        location.href="../HTML/administrators.html";
                      },3000);
                 }
                 else{
@@ -87,18 +98,6 @@ $(document).ready(function(){
     });
 });
 // 注册验证
-var username2=document.getElementById("username2");
-function checkName2(event){
-    var tipname2=document.getElementById("tip-name2");
-    if(/^[^A-Z]/.exec(username2.value)){
-        tipname2.style.color="rgb(214, 72, 72)"
-        event.preventDefault();
-    }
-    else{
-        tipname2.style.color="#908a78"
-    }
-}
-username2.addEventListener("blur",checkName2,false);
 var password2=document.getElementById("password2");
 function checkPassword2(event){
     var tippassword2=document.getElementById("tip-password2");
