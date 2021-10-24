@@ -48,22 +48,13 @@ var res;
     function adddata(res){
         var dataHtml = "";
         for(var item=0;item< res.productDate.list.length;item++){
-            dataHtml += `<div class="user">
-                            <span><img src="../IMG/岛.png" alt="" width="40px" height="40px"></span>
-                            <p>用户名</p>
-                            <a href="#" class="plate"><p>田地</p></a>
-                        </div>
-                        <div>
-                            <p>主要内容：巴拉巴拉巴拉巴拉巴拉</p>
-                        </div>
-                        <div class="time">
-                            <p>时间</p>
-                        </div>
-                        <div class="point">
-                            <div><span class="p1"></span><p>100</p></div>
-                            <div><span class="p2"></span><p>20</p></div>
-                            <div><span class="p3"></span><p>50</p></div>
-                        </div>`
+            dataHtml += `<div class="data">
+            <img src="${res.productDate.list[item].product_photo}" width="30%" height="60%">
+            <span>${res.productDate.list[item].product_name}</span>
+            <span>价格：${res.productDate.list[item].product_price}</span>
+            <span>仅剩：${res.productDate.list[item].product_num}件</span>
+            <button id="${item}">查看详情</button>
+            </div>`
         }
         document.getElementById("data").innerHTML = dataHtml;
     }
@@ -150,7 +141,12 @@ var res;
 //     // console.log(res.productDate.list)
 //     var button=e.target;
 //     var id =button.id;
+//     console.log(id)
+//     console.log(res.productDate.list[id])
 //     setTimeout(function(){
-//         location.href=`../html/plate.html`;
+//         location.href=`../html/productmsg.html?product_photo=${res.productDate.list[id].product_photo}
+//         &product_name=${res.productDate.list[id].product_name}&product_price=${res.productDate.list[id].product_price}
+//         &product_num=${res.productDate.list[id].product_num}&product_msg=${res.productDate.list[id].product_msg}
+//         &product_id=${res.productDate.list[id].product_id}`;
 //     },1000)
 // },false);
