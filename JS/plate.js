@@ -1,4 +1,4 @@
-window.onload = function(){
+(function(window){
     var url=location.search;
     var plate=new Object();
     var str=url.split("?");
@@ -41,15 +41,21 @@ window.onload = function(){
                 console.log(data)
                 // 渲染当前页面数据
                 var dataHtml = "";
-                    dataHtml += `<div class="user">
-                                    <span><img src="${data.section.imageUrl}" alt="" width="80px" height="80px"></span>
-                                    <a href="../HTML/plate.html?plateid=${data.section.sectionId}" class="plate"><p>${data.section.sectionName}</p></a>
+                    dataHtml += `<div class="platemsg">
+                                <div class="user">
+                                    <span><img src="${data.section.imageUrl}" alt="" width="100px" height="100px"></span>
+                                    <a href="../HTML/plate.html?plateid=${data.section.sectionId}" class="plate"><h2>${data.section.sectionName}</h2></a>
                                 </div>
                                 <div>
                                     <p>${data.section.description}</p>
                                 </div>
                                 <div class="time">
                                     <p>${data.section.createTime}</p>
+                                </div>
+                                </div><div class="point">
+                                    <div><span class="p1"></span><p>100</p></div>
+                                    <div><span class="p2"></span><p>20</p></div>
+                                    <input type="button" value="关注" id="submit${data.section.sectionId}" class="submit">
                                 </div>`
                 document.getElementById("platemsg").innerHTML = dataHtml;
             }
@@ -63,156 +69,170 @@ window.onload = function(){
             }
         }
     });
-}
-// var res;
-
-// (function(window){
-//     var defaultPager = {
-//         currentPage: 1,     //现在页数
-//         limit: 6,           //每页的数据个数
-//         divNumber: 5,       //页码块的个数
-//         total: 0,           //数据总数
-//         pageNumber: 0 ,      //总页数
-//         search:''
-//     };
-//     function createPager(pager){
-//         pager = Object.assign(defaultPager, pager);
-//         request(pager);
-//         bindEvent(pager);
-//     }
-
-//     var search=document.getElementById("search");
-//     function searchall(){
-//         defaultPager.search=document.getElementById("searchtext").value;
-//         window.createPager();
-//     }
-//     search.addEventListener("click",searchall,false);
     
-//     function request(pager){
-//         var xhr = new XMLHttpRequest();
-//         xhr.open("post", ``);
-//         xhr.withCredentials=true;
-//         xhr.send(JSON.stringify({
-//             curPage:pager.currentPage,
-//             pageSize:pager.limit,
-//             search:pager.search
-//         }));
-//         xhr.onreadystatechange = function(){
-//             if(xhr.readyState === 4 && xhr.status === 200){
-//                  res = JSON.parse(xhr.responseText);
-//                 console.log(res.msg);
-//                 console.log(res.status);
-//                 pager.total = res.productDate.totalRecord;
-//                 pager.pageNumber = Math.ceil(pager.total/ pager.limit);
-//                 adddata(res);
-//                 show(pager);
-//             }
-//         }
-//     }
+    var defaultPager = {
+        currentPage: 1,     //现在页数
+        limit: 9,           //每页的数据个数
+        divNumber: 5,       //页码块的个数
+        total: 0,           //数据总数
+        pageNumber: 0 ,      //总页数
+        search:''
+    };
+    function createPager(pager){
+        pager = Object.assign(defaultPager, pager);
+        request(pager);
+        bindEvent(pager);
+    }
 
-//     // 渲染当前页面数据
-//     function adddata(res){
-//         var dataHtml = "";
-//         for(var item=0;item< res.productDate.list.length;item++){
-//             dataHtml += `<div class="data">
-//             <img src="${res.productDate.list[item].product_photo}" width="30%" height="60%">
-//             <span>${res.productDate.list[item].product_name}</span>
-//             <span>价格：${res.productDate.list[item].product_price}</span>
-//             <span>仅剩：${res.productDate.list[item].product_num}件</span>
-//             <button id="${item}">查看详情</button>
-//             </div>`
-//         }
-//         document.getElementById("data").innerHTML = dataHtml;
-//     }
-//     // 展示页码框
-//     function show(pager){
-//         var min,max;
-//         min = pager.currentPage - Math.floor(pager.divNumber / 2);
-//         if(min < 1){
-//             min = 1
-//         }
-//         max = min + pager.divNumber -1;
-//         if(max > pager.pageNumber){
-//             max = pager.pageNumber
-//             min = max - pager.pageNumber + 1
-//         }
-//         if(pager.divNumber >= pager.pageNumber){
-//             min = 1
-//             max = pager.pageNumber
-//         }
-//         var item = "";
-//         if(pager.currentPage != 1){
-//             item += `<div class="first">首页</div>
-//             <div class="prev">上一页</div>`
-//         }
-//         if(min != 1){
-//             item += `<div class="omit">...</div>`
-//         }
-//         for(var i = min; i <= max; i++){
-//             var flag = ''
-//             if(i == pager.currentPage){
-//                 flag = 'selected'
-//             }
-//             item += `<div class="number ${flag}">${i}</div>`
-//         }
-//         if(max != pager.pageNumber){
-//             item += `<div class="omit">...</div>`
-//         }
-//         if(pager.currentPage != pager.pageNumber){
-//             item += `<div class="next">下一页</div>
-//             <div class="last">尾页</div>`
-//         }
-//         item += `<div>共${pager.pageNumber}页</div>`;
-//         document.getElementById("pager").innerHTML = item;
-//     }
-//     // 绑定事件
-//     function bindEvent(pager){
-//         document.getElementById("pager").addEventListener("click", function(e){
-//             var classlist = e.target.getAttribute('class');
-//             if(classlist.search("first") !== -1){
-//                 toPage(1, pager);
-//             }else if(classlist.search("prev") !== -1){
-//                 toPage(pager.currentPage - 1, pager);
-//             }else if(classlist.search("next") !== -1){
-//                 toPage(pager.currentPage + 1, pager);
-//             }else if(classlist.search("last") !== -1){
-//                 toPage(pager.pageNumber, pager);
-//             }else if(classlist.search("number") !== -1){
-//                 var targetPage = Number(e.target.innerText);
-//                 toPage(targetPage, pager);
-//             }
-//         }, false)
-//     }
-//     // 跳转页面
-//     function toPage(page, pager){
-//         if(page < 1){
-//             page = 1;
-//         }
-//         if(page > pager.pageNumber){
-//             page = pager.pageNumber;
-//         }
-//         if(page === pager.currentPage){
-//             return;
-//         }
-//         pager.currentPage = page;
-//         request(pager);
-//     }
+    var search=document.getElementById("search");
+    function searchall(){
+        defaultPager.search=document.getElementById("searchtext").value;
+        window.createPager();
+    }
+    search.addEventListener("click",searchall,false);
+    
+    
+function request(pager){
+    var token= localStorage.getItem("token");
+    console.log(token)
+    // var postDate={
+    //     "cur":pager.currentPage,
+    //     "size":pager.limit
+    // }
+    $.ajax({
+        type: 'GET',
+        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/sections/:"+plateid+"/posts?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
+        headers:{
+            "Authorization":token
+        },
+        contentType: "application/json",
+        // data:JSON.stringify(postDate),
+        error: function() {
+            $("#dialog p").html("信息加载失败")
+            $( "#dialog" ).dialog( "open" );
+            setTimeout(function(){
+                location.href="../HTML/login.html";
+            },3000);
+        },
+        success: function(data) {
+            if(data.status==1){
+                console.log(data)
+                pager.total = data.page.totalRecord;
+                pager.pageNumber = Math.ceil(pager.total/ pager.limit);
+                // 渲染当前页面数据
+
+                var dataHtml = "";
+                for(var item=0;item< data.page.list.length;item++){
+                    
+                    dataHtml += `<div class="data">
+                                    <div class="user">
+                                        <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
+                                        <p>${data.page.list[item].username}</p>
+                                        <a href="../HTML/plate.html?plateid=${data.page.list[item].sectionId}" class="plate"><p>${data.page.list[item].sectionName}</p></a>
+                                    </div>
+                                    <h4>${data.page.list[item].title}</h4>
+                                    <div>
+                                        <p>${data.page.list[item].content}</p>
+                                    </div>
+                                    <div class="time">
+                                        <p>${data.page.list[item].postDate}</p>
+                                    </div>
+                                    <div class="point">
+                                        <div><span class="p1"></span><p>${data.page.list[item].accessNumber}</p></div>
+                                        <div><span class="p2"></span><p>${data.page.list[item].commentNumber}</p></div>
+                                        <div><span class="p3"></span><p>${data.page.list[item].likeNumber}</p></div>
+                                    </div>
+                                </div>`
+                }
+                document.getElementById("data").innerHTML = dataHtml;
+                show(pager);
+            }
+            else{
+                console.log(data)
+                $("#dialog p").html("信息加载失败")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    location.href="../HTML/login.html";
+                },3000);
+            }
+        }
+    });
+}
+    
+    // 展示页码框
+    function show(pager){
+        var min,max;
+        min = pager.currentPage - Math.floor(pager.divNumber / 2);
+        if(min < 1){
+            min = 1
+        }
+        max = min + pager.divNumber -1;
+        if(max > pager.pageNumber){
+            max = pager.pageNumber
+            min = max - pager.pageNumber + 1
+        }
+        if(pager.divNumber >= pager.pageNumber){
+            min = 1
+            max = pager.pageNumber
+        }
+        var item = "";
+        if(pager.currentPage != 1){
+            item += `<div class="first">首页</div>
+            <div class="prev">上一页</div>`
+        }
+        if(min != 1){
+            item += `<div class="omit">...</div>`
+        }
+        for(var i = min; i <= max; i++){
+            var flag = ''
+            if(i == pager.currentPage){
+                flag = 'selected'
+            }
+            item += `<div class="number ${flag}">${i}</div>`
+        }
+        if(max != pager.pageNumber){
+            item += `<div class="omit">...</div>`
+        }
+        if(pager.currentPage != pager.pageNumber){
+            item += `<div class="next">下一页</div>
+            <div class="last">尾页</div>`
+        }
+        item += `<div>共${pager.pageNumber}页</div>`;
+        document.getElementById("pager").innerHTML = item;
+    }
+    // 绑定事件
+    function bindEvent(pager){
+        document.getElementById("pager").addEventListener("click", function(e){
+            var classlist = e.target.getAttribute('class');
+            if(classlist.search("first") !== -1){
+                toPage(1, pager);
+            }else if(classlist.search("prev") !== -1){
+                toPage(pager.currentPage - 1, pager);
+            }else if(classlist.search("next") !== -1){
+                toPage(pager.currentPage + 1, pager);
+            }else if(classlist.search("last") !== -1){
+                toPage(pager.pageNumber, pager);
+            }else if(classlist.search("number") !== -1){
+                var targetPage = Number(e.target.innerText);
+                toPage(targetPage, pager);
+            }
+        }, false)
+    }
+    // 跳转页面
+    function toPage(page, pager){
+        if(page < 1){
+            page = 1;
+        }
+        if(page > pager.pageNumber){
+            page = pager.pageNumber;
+        }
+        if(page === pager.currentPage){
+            return;
+        }
+        pager.currentPage = page;
+        request(pager);
+    }
 
 
-//     window.createPager = createPager;
-// })(window)
-// // 跳转详情
-// // var data =document.getElementById("data");
-// // data.addEventListener("click",function(e){
-// //     // console.log(res.productDate.list)
-// //     var button=e.target;
-// //     var id =button.id;
-// //     console.log(id)
-// //     console.log(res.productDate.list[id])
-// //     setTimeout(function(){
-// //         location.href=`../html/productmsg.html?product_photo=${res.productDate.list[id].product_photo}
-// //         &product_name=${res.productDate.list[id].product_name}&product_price=${res.productDate.list[id].product_price}
-// //         &product_num=${res.productDate.list[id].product_num}&product_msg=${res.productDate.list[id].product_msg}
-// //         &product_id=${res.productDate.list[id].product_id}`;
-// //     },1000)
-// // },false);
+    window.createPager = createPager;
+})(window)

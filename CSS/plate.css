@@ -2,25 +2,36 @@
     width: 95%;
     background-color: white;
     border-radius: 5px;
-    border: solid 0.2em rgb(143, 77, 38);
+    border: dashed 0.2em rgb(143, 77, 38);
     margin: 10px auto;
     padding: 5px;
     display: flex;
-    flex-direction: column;
 }
 #platemsg div{
     display: flex;
+    flex-direction: column;
+}
+#platemsg .platemsg{
+    width: 80%;
+}
+#platemsg .point{
+    width: 20%;
+    height: 100%;
+    margin: auto 0 auto 0 ;
+    border: double 0.1em rgb(143, 77, 38);
 }
 #platemsg .user{
     margin: 5px auto 5px 10px;
+    display: flex;
+    flex-direction: row;
 }
 #platemsg a{
     text-decoration: none;
     color: rgb(143, 77, 38);
 }
-#platemsg p{
-    height: 40px;
-    line-height: 40px;
+#platemsg h2{
+    height: 100px;
+    line-height: 100px;
     text-align: center;
     display: block;
     margin: 0 auto 0 10px;
@@ -29,6 +40,42 @@
     margin: 5px auto 5px 10px;
     font-size: small;
     color: rgb(170, 169, 169);
+}
+#platemsg .point div{
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    /* border: solid 0.1em rgb(143, 77, 38); */
+    margin: 5px auto;
+    display: flex;
+    flex-direction: row;
+}
+#platemsg .point span{
+    padding: 0;
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 10px auto 10px auto;
+    background: url(../IMG/orangenav.png) ;
+    background-repeat: no-repeat;
+    background-size: 480px 450px;
+}
+#platemsg .point p{
+    width: 50%;
+    text-align: center;
+}
+#platemsg .point .p1{
+    background-position: -270px -180px;
+}
+#platemsg .point .p2{
+    background-position: -240px -180px;
+}
+#platemsg .point .submit{
+    width: 70%;
+    background-color: rgb(143, 77, 38);
+    color: white;
+    height: 20px;
+    border-radius: 3px;
 }
 .data{
     width: 95%;
@@ -46,11 +93,12 @@
 .data .user{
     margin: 5px auto 5px 10px;
 }
-.user img{
+.data .user img{
     border-radius: 40px;
 }
 .user p{
     height: 40px;
+    font-size: small;
     line-height: 40px;
     text-align: center;
     display: block;
@@ -95,4 +143,21 @@
 .data .user .plate{
     text-decoration: none;
     color:rgb(143, 77, 38) ;
+}
+/* 分页页码框 */
+#pager{
+    display: flex;
+    justify-content: center;
+}
+#pager div{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 8px;
+}
+div.selected{
+    background-color: rgb(143, 77, 38);
+    color: white;
+}
+div.omit{
+    color: #999;
 }
