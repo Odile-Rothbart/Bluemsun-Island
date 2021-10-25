@@ -5,9 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>蓝旭岛</title>
+    <link rel="stylesheet" href="../CSS/jquery-ui.min.css">
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/plate.css">
     <script src="../JS/external/jquery/jquery.js"></script>
+    <script src="../JS/jquery-ui.min.js"></script>
+    <style>
+        #middle{
+            width: 90%;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -27,7 +34,7 @@
         </div>
     </header>
     <main>
-        <section id="left">
+        <!-- <section id="left">
             <h3>热门田地</h3>
             <div>
                 <div><a href="#"><span id="l1"></span><p>榜一</p></a></div>
@@ -36,30 +43,21 @@
                 <div><a href="#"><span id="l4"></span><p>榜四</p></a></div>
                 <div><a href="#"><span id="l5"></span><p>榜五</p></a></div>
             </div>
-        </section>
+        </section> -->
         <section id="middle">
-            <div class="platemsg">
-                <div class="user">
-                    <span><img src="../IMG/岛.png" alt="" width="50px" height="50px"></span>
-                    <a href="#" class="plate"><p>田地</p></a>
-                </div>
-                <div>
-                    <p>介绍：巴拉巴拉巴拉巴拉巴拉</p>
-                </div>
-                <div class="time">
-                    <p>时间</p>
-                </div>
+            <div id="platemsg">
+                
             </div>
             <div class="container">
                 <div id="data">
                     <div class="data">
-                        
+                    </div>
                 </div>
                 <div id="pager">
                 </div>
             </div>
         </section>
-        <section id="right">
+        <!-- <section id="right">
             <h3>热门苇絮</h3>
             <div>
                 <div><a href="#"><span id="r1"></span><p>榜一</p></a></div>
@@ -72,13 +70,16 @@
                 <div><a href="#"><span id="r8"></span><p>榜八</p></a></div>
                 <div><a href="#"><span id="r9"></span><p>榜九</p></a></div>
                 <div><a href="#"><span id="r10"></span><p>榜十</p></a></div>
-                </div>
-        </section>
+            </div>
+        </section> -->
     </main>
+    <div id="dialog" title="提示">
+        <p></p>
+    </div>
 </body>
 <script src="../JS/header.js"></script>
 <script src="../JS/plate.js"></script>
 <script>
-    window.createPager();
+    // window.createPager();
 </script>
 </html>

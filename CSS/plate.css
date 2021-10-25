@@ -1,4 +1,4 @@
-.platemsg{
+#platemsg{
     width: 95%;
     background-color: white;
     border-radius: 5px;
@@ -8,23 +8,24 @@
     display: flex;
     flex-direction: column;
 }
-.platemsg div{
+#platemsg div{
     display: flex;
 }
-.platemsg .user{
+#platemsg .user{
     margin: 5px auto 5px 10px;
 }
-.platemsg img{
-    border-radius: 50px;
+#platemsg a{
+    text-decoration: none;
+    color: rgb(143, 77, 38);
 }
-.platemsg p{
+#platemsg p{
     height: 40px;
     line-height: 40px;
     text-align: center;
     display: block;
     margin: 0 auto 0 10px;
 }
-.platemsg .time{
+#platemsg .time{
     margin: 5px auto 5px 10px;
     font-size: small;
     color: rgb(170, 169, 169);

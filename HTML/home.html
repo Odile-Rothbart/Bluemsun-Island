@@ -5,9 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>蓝旭岛</title>
+    <link rel="stylesheet" href="../CSS/jquery-ui.min.css">
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/home.css">
     <script src="../JS/external/jquery/jquery.js"></script>
+    <script src="../JS/jquery-ui.min.js"></script>
 </head>
 <body>
     <header>
@@ -29,12 +31,8 @@
     <main>
         <section id="left">
             <h3>热门田地</h3>
-            <div>
-                <div><a href="#"><span id="l1"></span><p>榜一</p></a></div>
-                <div><a href="#"><span id="l2"></span><p>榜二</p></a></div>
-                <div><a href="#"><span id="l3"></span><p>榜三</p></a></div>
-                <div><a href="#"><span id="l4"></span><p>榜四</p></a></div>
-                <div><a href="#"><span id="l5"></span><p>榜五</p></a></div>
+            <div id="hotplate">
+                
             </div>
         </section>
         <section id="middle">
@@ -47,6 +45,7 @@
                             <p>用户名</p>
                             <a href="#" class="plate"><p>田地</p></a>
                         </div>
+                        <h4>标题</h4>
                         <div>
                             <p>主要内容：巴拉巴拉巴拉巴拉巴拉</p>
                         </div>
@@ -58,6 +57,7 @@
                             <div><span class="p2"></span><p>20</p></div>
                             <div><span class="p3"></span><p>50</p></div>
                         </div>
+                    </div>
                 </div>
                 <div id="pager">
                 </div>
@@ -79,10 +79,13 @@
                 </div>
         </section>
     </main>
+    <div id="dialog" title="提示">
+        <p></p>
+    </div>
 </body>
 <script src="../JS/header.js"></script>
 <script src="../JS/home.js"></script>
 <script>
-    window.createPager();
+    // window.createPager();
 </script>
 </html>
