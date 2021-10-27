@@ -39,7 +39,7 @@ header h1{
     border-radius: 20px;
     background-color: white;
 }
-#input #search{
+#input .search{
     width: 20%;
     margin: 2px auto;
     border-radius: 20px;

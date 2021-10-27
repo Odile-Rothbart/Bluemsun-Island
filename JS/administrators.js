@@ -24,12 +24,12 @@
         bindEvent(pager);
     }
 
-    var search=document.getElementById("search");
-    function searchall(){
-        defaultPager.search=document.getElementById("searchtext").value;
-        window.createPager();
-    }
-    search.addEventListener("click",searchall,false);
+    // var search=document.getElementById("search");
+    // function searchall(){
+    //     defaultPager.search=document.getElementById("searchtext").value;
+    //     window.createPager();
+    // }
+    // search.addEventListener("click",searchall,false);
     
     function request(pager){
         var token= localStorage.getItem("token");
