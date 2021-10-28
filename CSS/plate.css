@@ -98,14 +98,23 @@
 }
 .user p{
     height: 40px;
-    font-size: small;
     line-height: 40px;
     text-align: center;
     display: block;
     margin: 0 auto 0 10px;
 }
-.data .time{
+.data h4{
     margin: 5px auto 5px 10px;
+    font-family: 仿宋;
+    font-weight: 1000;
+}
+.data .content{
+    display: block;
+    margin: 5px auto 5px 10px;
+    color: rgb(170, 169, 169);
+}
+.data .time{
+    margin: 5px 10px 5px auto;
     font-size: small;
     color: rgb(170, 169, 169);
 }
