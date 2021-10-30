@@ -74,7 +74,7 @@ window.onload = function(){
             console.log(formdata.get("portrait"))
             $.ajax({
                 type: 'POST',
-                url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/user/portraits",
+                url:"http://windlinxy.top:8080/bluemsun_island/user/portraits",
                 headers:{
                     "Authorization":token
                 },

@@ -1,14 +1,14 @@
 var plateid
 (function(window){
-    var url=location.search;
-    var plate=new Object();
-    var str=url.split("?");
-    var strs=str[1].split("&");
-    for (var i=0;i<strs.length;i++){
-        plate[i]=decodeURI(strs[i].split("=")[1]);
-    }
-    plateid=plate[0];
-    console.log(plateid)
+    // var url=location.search;
+    // var plate=new Object();
+    // var str=url.split("?");
+    // var strs=str[1].split("&");
+    // for (var i=0;i<strs.length;i++){
+    //     plate[i]=decodeURI(strs[i].split("=")[1]);
+    // }
+    // plateid=plate[0];
+    // console.log(plateid)
     $( "#dialog" ).dialog({
         autoOpen: false,
         show: {

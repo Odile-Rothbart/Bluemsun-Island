@@ -12,7 +12,7 @@
       });
     var defaultPager = {
         currentPage: 1,     //现在页数
-        limit: 8,           //每页的数据个数
+        limit: 9,           //每页的数据个数
         divNumber: 5,       //页码块的个数
         total: 0,           //数据总数
         pageNumber: 0 ,      //总页数
@@ -40,7 +40,7 @@
         // }
         $.ajax({
             type: 'GET',
-            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/sections?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
+            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/audits?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
             headers:{
                 "Authorization":token
             },
@@ -62,35 +62,40 @@
     
                     var dataHtml = "";
                     for(var item=0;item< data.page.list.length;item++){
-                        var status
-                        // if(data.page.list[item].identifyId==0){
-                        //     data.page.list[item].identifyId="普通用户"
-                        // }
-                        // if(data.page.list[item].identifyId==1){
-                        //     data.page.list[item].identifyId="版主"
-                        // }
-                        // if(data.page.list[item].identifyId==-1){
-                        //     data.page.list[item].identifyId="管理员"
-                        // }
-                        if(data.page.list[item].sectionStatus==-1){
-                            status="解冻"
-                        }
-                        if(data.page.list[item].sectionStatus==0){
-                            console.log(0)
-                            status="冻结"
-                        }
-                        dataHtml += `<div class="data">
+                        if(data.page.list[item].status==1){
+                            dataHtml += `<div class="data">
                                         <div class="user">
                                             <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
-                                            <p>${data.page.list[item].sectionName}</p>
-                                        </div>
-                                        <div class="platemsg">
-                                            <p>${data.page.list[item].description}</p>
+                                            <p>${data.page.list[item].content}</p>
                                         </div>
                                         <div class="point">
-                                            <input type="button" value="${status}" id="frozen${data.page.list[item].sectionId}" onclick="frozenplate(${data.page.list[item].sectionId},${data.page.list[item].sectionStatus})"> 
+                                            <p>已同意</p>
                                         </div>
                                     </div>`
+                        }
+                        if(data.page.list[item].status==0){
+                            dataHtml += `<div class="data">
+                                        <div class="user">
+                                            <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
+                                            <p>${data.page.list[item].content}</p>
+                                        </div>
+                                        <div class="point">
+                                            <input type="button" value="同意" id="agree${data.page.list[item].auditId}" onclick="agreenotice(${data.page.list[item].auditId})"> 
+                                            <input type="button" value="驳回" id="reject${data.page.list[item].auditId}" onclick="rejectnotice(${data.page.list[item].auditId})">
+                                        </div>
+                                    </div>`
+                        }
+                        if(data.page.list[item].status==-1){
+                            dataHtml += `<div class="data">
+                                        <div class="user">
+                                            <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
+                                            <p>${data.page.list[item].content}</p>
+                                        </div>
+                                        <div class="point">
+                                            <p>已驳回</p>
+                                        </div>
+                                    </div>`
+                        }
                     }
                     document.getElementById("data").innerHTML = dataHtml;
                     show(pager);
@@ -185,57 +190,13 @@
 
     window.createPager = createPager;
 })(window)
-// 板块删除
-// function deleteuser(data){
-//     var token= localStorage.getItem("token");
-//     console.log(token)
-//     $.ajax({
-//         type: 'DELETE',
-//         url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users/:"+data,
-//         headers:{
-//             "Authorization":token
-//         },
-//         contentType: "application/json",
-//         error: function() {
-//             $("#dialog p").html("删除失败，请重试")
-//             $( "#dialog" ).dialog( "open" );
-//             setTimeout(function(){
-//                 $( "#dialog" ).dialog( "close" );
-//             },2000);
-//         },
-//         success: function(data) {
-//             if(data.status==1){
-//                 $("#dialog p").html("删除成功")
-//                 $( "#dialog" ).dialog( "open" );
-//                 setTimeout(function(){
-//                     $( "#dialog" ).dialog( "close" );
-//                     history.go(0)
-//                  },2000);
-//             }
-//             else{
-//                 console.log(data)
-//                 $("#dialog p").html("删除失败，请重试")
-//                 $( "#dialog" ).dialog( "open" );
-//                 setTimeout(function(){
-//                     $( "#dialog" ).dialog( "close" );
-//                 },2000);
-//             }
-//         }
-//     });
-// }
-// 板块冻结
-function frozenplate(data1,data2){
+// 同意
+function agreenotice(data){
     var token= localStorage.getItem("token");
     console.log(token)
-    if(data2==-1){
-        data2=0
-    }
-    else{
-        data2=-1
-    }
     $.ajax({
         type: 'PATCH',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/sections/:"+data1+"/:"+data2,
+        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/audits/:"+data+"/1",
         headers:{
             "Authorization":token
         },
@@ -248,26 +209,53 @@ function frozenplate(data1,data2){
             },2000);
         },
         success: function(data) {
-            console.log(data)
-            if(data.status==1&&data.sectionStatus==0){
-                $("#ban"+data1).val("冻结")
-                $("#dialog p").html("解冻成功")
+            if(data.status==1){
+                $("#dialog p").html("已同意")
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){
                     $( "#dialog" ).dialog( "close" );
                     history.go(0)
                  },2000);
             }
-            if(data.status==1&&data.sectionStatus==-1){
-                $("#ban"+data1).val("解冻")
-                $("#dialog p").html("冻结成功")
+            else{
+                console.log(data)
+                $("#dialog p").html("失败，请重试")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                },2000);
+            }
+        }
+    });
+}
+// 驳回
+function rejectnotice(data){
+    var token= localStorage.getItem("token");
+    console.log(token)
+    $.ajax({
+        type: 'PATCH',
+        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/audits/:"+data+"/-1",
+        headers:{
+            "Authorization":token
+        },
+        contentType: "application/json",
+        error: function() {
+            $("#dialog p").html("失败，请重试")
+            $( "#dialog" ).dialog( "open" );
+            setTimeout(function(){
+                $( "#dialog" ).dialog( "close" );
+            },2000);
+        },
+        success: function(data) {
+            if(data.status==1){
+                $("#dialog p").html("已驳回")
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){
                     $( "#dialog" ).dialog( "close" );
                     history.go(0)
                  },2000);
             }
-            if(data.status==0){
+            else{
                 console.log(data)
                 $("#dialog p").html("失败，请重试")
                 $( "#dialog" ).dialog( "open" );

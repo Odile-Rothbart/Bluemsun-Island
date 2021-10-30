@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蓝旭岛</title>
+    <link rel="stylesheet" href="../CSS/jquery-ui.min.css">
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/plate.css">
+    <link rel="stylesheet" href="../CSS/write.css">
+    <script src="../JS/external/jquery/jquery.js"></script>
+    <script src="../JS/jquery-ui.min.js"></script>
+    <script src="../package/dist/wangEditor.min.js"></script>
+    <style>
+        #middle{
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="input">
+            <input type="text" id="searchtext">
+            <input type="button" value="搜索" id="search">
+        </div>
+        <div id="all">
+            <div><a href="./home.html"><span id="nav1"></span><p>主页</p></a></div>
+            <div><a href="./notice.html"><span id="nav4"></span><p>评论</p></a></div>
+            <div><a href="./mine.html"><span id="nav5"></span><p>我的</p></a></div>
+        </div>
+        <div id="theme">
+            <a href="#" id="bright"><span></span><p></p></a>
+        </div>
+    </header>
+    <main>
+        <section id="middle">
+            <div id="platemsg">
+                
+            </div>
+            <div id="writecomment">
+                <span class="col-lg-8" id="editor"></span>
+                <input type="button" value="立即评论" id="submit" class="submit">
+            </div>
+            <div class="container">
+                <div id="data">
+                    <div class="data">
+                    </div>
+                </div>
+                <div id="pager">
+                </div>
+            </div>
+        </section>
+    </main>
+    <div id="dialog" title="提示">
+        <p></p>
+    </div>
+</body>
+<script src="../JS/header.js"></script>
+<script src="../JS/post.js"></script>
+<script>
+    // window.createPager();
+</script>
+</html>
