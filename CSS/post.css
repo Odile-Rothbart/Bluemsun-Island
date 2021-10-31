@@ -1,0 +1,162 @@
+#platemsg{
+    width: 95%;
+    background-color: white;
+    border-radius: 5px;
+    border: dashed 0.2em rgb(143, 77, 38);
+    margin: 10px auto;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+#platemsg div{
+    display: flex;
+}
+#platemsg .user{
+    margin: 5px auto 5px 10px;
+}
+#platemsg .user img{
+    border-radius: 40px;
+}
+.user p{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    display: block;
+    margin: 0 auto 0 10px;
+}
+#platemsg h4{
+    margin: 5px auto 5px 10px;
+    font-family: 仿宋;
+    font-weight: 1000;
+}
+#platemsg .content{
+    display: block;
+    margin: 5px auto 5px 10px;
+}
+#platemsg .time{
+    margin: 5px 10px 5px auto;
+    font-size: small;
+    color: rgb(170, 169, 169);
+}
+#platemsg .point{
+    width: 100%;
+}
+#platemsg .point div{
+    width: 33%;
+    margin: 0 auto;
+    border: solid 0.1em rgb(143, 77, 38);
+    border-radius: 5px;
+}
+#platemsg .point span{
+    padding: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: url(../IMG/orangenav.png) ;
+    background-repeat: no-repeat;
+    background-size: 320px 300px;
+}
+#platemsg .point p{
+    width: 50%;
+    text-align: center;
+}
+#platemsg .point .p1{
+    background-position: -200px -140px;
+}
+#platemsg .point .p2{
+    background-position: -160px -120px;
+}
+#platemsg .point .p3{
+    background-position: -260px -140px;
+}
+#platemsg .user .plate{
+    text-decoration: none;
+    color:rgb(143, 77, 38) ;
+}
+#editor{
+    display: block;
+    width:90%;
+    position: relative;
+    z-index: 1;
+}
+#editor .w-e-text-container {
+    height: 100px !important;
+}
+#dialog{
+    z-index: 9999;
+}
+.data{
+    width: 95%;
+    background-color: white;
+    border-radius: 5px;
+    border: solid 0.2em rgb(143, 77, 38);
+    margin: 10px auto;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.data div{
+    display: flex;
+}
+.data .user{
+    margin: 5px auto 5px 10px;
+}
+.data .user img{
+    border-radius: 40px;
+}
+.user p{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    display: block;
+    margin: 0 auto 0 10px;
+}
+.data h4{
+    margin: 5px auto 5px 10px;
+    font-family: 仿宋;
+    font-weight: 1000;
+}
+.data .content{
+    display: block;
+    margin: 5px auto 5px 10px;
+}
+.data .time{
+    margin: 5px 10px 5px auto;
+    font-size: small;
+    color: rgb(170, 169, 169);
+}
+.data .time a{
+    text-decoration: none;
+    color:rgb(143, 77, 38);
+    margin: 0 0 0 2px;
+    font-size: small;
+    display: block;
+}
+.data .reply{
+    width: 90%;
+    display: flex
+}
+.data .reply input{
+    width: 70%;
+}
+.data .reply .submit{
+    width: 15%;
+    margin: 10px auto;
+}
+/* 分页页码框 */
+#pager{
+    display: flex;
+    justify-content: center;
+}
+#pager div{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 8px;
+}
+div.selected{
+    background-color: rgb(143, 77, 38);
+    color: white;
+}
+div.omit{
+    color: #999;
+}

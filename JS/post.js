@@ -24,7 +24,7 @@ var postid
     console.log(token)
     $.ajax({
         type: 'GET',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/sections/:"+postid,
+        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/posts/"+postid,
         contentType: "application/json",
         headers:{
             "Authorization":token
@@ -42,20 +42,25 @@ var postid
                 console.log(data)
                 // 渲染当前页面数据
                 var dataHtml = "";
-                    dataHtml += `<div class="data" onclick="jump(${data.page.list[item].postId})">
+                    dataHtml += `
                     <div class="user">
-                        <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
-                        <p>${data.page.list[item].username}</p>
-                        <a href="../HTML/plate.html?plateid=${data.page.list[item].sectionId}" class="plate"><p>${data.page.list[item].sectionName}</p></a>
+                        <span><img src="${data.post.imageUrl}" alt="" width="40px" height="40px"></span>
+                        <p>${data.post.username}</p>
+                        <a href="../HTML/plate.html?plateid=${data.post.sectionId}" class="plate"><p>${data.post.sectionName}</p></a>
                     </div>
-                    <h4>${data.page.list[item].title}</h4>
+                    <h4>${data.post.title}</h4>
                     <div class="content">
-                        <p>${data.page.list[item].content}</p>
+                        <p>${data.post.content}</p>
                     </div>
                     <div class="time">
-                        <p>${data.page.list[item].postDate}</p>
+                        <p>${data.post.postDate}</p>
                     </div>
-                </div>`
+                    <div class="point">
+                        <div><span class="p1"></span><p>${data.post.accessNumber}</p></div>
+                        <div><span class="p2"></span><p>${data.post.commentNumber}</p></div>
+                        <div><span class="p3"></span><p>${data.post.likeNumber}</p></div>
+                    </div>
+                `
                 document.getElementById("platemsg").innerHTML = dataHtml;
             }
             else{
@@ -100,7 +105,7 @@ function request(pager){
     // }
     $.ajax({
         type: 'GET',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/sections/:"+plateid+"/posts?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
+        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/:"+postid+"/comments?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
         headers:{
             "Authorization":token
         },
@@ -125,21 +130,19 @@ function request(pager){
                     
                     dataHtml += `<div class="data">
                                     <div class="user">
-                                        <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
-                                        <p>${data.page.list[item].username}</p>
-                                        <a href="../HTML/plate.html?plateid=${data.page.list[item].sectionId}" class="plate"><p>${data.page.list[item].sectionName}</p></a>
+                                        <span><img src="${data.page.list[item].userPortrait}" alt="" width="40px" height="40px"></span>
+                                        <p>${data.page.list[item].userName}</p>
                                     </div>
-                                    <h4>${data.page.list[item].title}</h4>
                                     <div class="content">
                                         <p>${data.page.list[item].content}</p>
                                     </div>
                                     <div class="time">
-                                        <p>${data.page.list[item].postDate}</p>
+                                        <p>${data.page.list[item].date}</p>
+                                        <a href="#">展开回复</a>
                                     </div>
-                                    <div class="point">
-                                        <div><span class="p1"></span><p>${data.page.list[item].accessNumber}</p></div>
-                                        <div><span class="p2"></span><p>${data.page.list[item].commentNumber}</p></div>
-                                        <div><span class="p3"></span><p>${data.page.list[item].likeNumber}</p></div>
+                                    <div class="reply">
+                                        <input type="text" name="reply" id="reply${data.page.list[item].id}">
+                                        <input type="button" value="回复" id="submit${data.page.list[item].id}" class="submit">
                                     </div>
                                 </div>`
                 }
@@ -282,7 +285,7 @@ editor.config.menus = [
 editor.config.uploadImgHeaders = {
     Authorization: localStorage.getItem('token') // 设置请求头
 }
-editor.config.uploadImgServer = 'http://jojo.vipgz1.idcfengye.com/bluemsun_island/post/images'
+editor.config.uploadImgServer = 'http:///windlinxy.top:8080/bluemsun_island/post/images'
 // editor.config.showLinkImg = false
 // 3M
 editor.config.uploadImgMaxSize = 100 * 1024 * 1024
@@ -350,13 +353,12 @@ document.getElementById('submit').addEventListener('click', function () {
         var token= localStorage.getItem("token");
         console.log(token)
         var postDate={
-            "content":announcement_mag,
-            "title":title
+            "commentContent":announcement_mag,
         }
         console.log(postDate)
       $.ajax({
-        url : "http://jojo.vipgz1.idcfengye.com/bluemsun_island/:"+plateid+"/posts?",
-        type : "post",
+        url : "http://jojo.vipgz1.idcfengye.com/bluemsun_island/:"+postid+"/comments?",
+        type : "POST",
         headers:{
             "Authorization":token
             },
@@ -365,7 +367,7 @@ document.getElementById('submit').addEventListener('click', function () {
         success : function(data) {
             if(data.status==1){
                 console.log(data)
-                $("#dialog p").html("发布成功！")
+                $("#dialog p").html("评论成功！")
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){
                     $( "#dialog" ).dialog( "close" );
@@ -375,7 +377,7 @@ document.getElementById('submit').addEventListener('click', function () {
             }
             else{
                 console.log(data)
-                $("#dialog p").html("抱歉，发布失败")
+                $("#dialog p").html("抱歉，评论失败")
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){
                     $( "#dialog" ).dialog( "close" );
@@ -383,7 +385,7 @@ document.getElementById('submit').addEventListener('click', function () {
             }
         },
         error : function(msg) {
-            $("#dialog p").html("抱歉，发布失败")
+            $("#dialog p").html("抱歉，评论失败")
             $( "#dialog" ).dialog( "open" );
             setTimeout(function(){
                 $( "#dialog" ).dialog( "close" );
@@ -394,4 +396,3 @@ document.getElementById('submit').addEventListener('click', function () {
 }, false)
 
 editor.create();
-
