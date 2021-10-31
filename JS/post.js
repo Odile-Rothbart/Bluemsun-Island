@@ -1,14 +1,14 @@
-var plateid
+var postid
 (function(window){
-    // var url=location.search;
-    // var plate=new Object();
-    // var str=url.split("?");
-    // var strs=str[1].split("&");
-    // for (var i=0;i<strs.length;i++){
-    //     plate[i]=decodeURI(strs[i].split("=")[1]);
-    // }
-    // plateid=plate[0];
-    // console.log(plateid)
+    var url=location.search;
+    var post=new Object();
+    var str=url.split("?");
+    var strs=str[1].split("&");
+    for (var i=0;i<strs.length;i++){
+        post[i]=decodeURI(strs[i].split("=")[1]);
+    }
+    postid=post[0];
+    console.log(postid)
     $( "#dialog" ).dialog({
         autoOpen: false,
         show: {
@@ -24,7 +24,7 @@ var plateid
     console.log(token)
     $.ajax({
         type: 'GET',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/sections/:"+plateid,
+        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/sections/:"+postid,
         contentType: "application/json",
         headers:{
             "Authorization":token
@@ -42,22 +42,20 @@ var plateid
                 console.log(data)
                 // 渲染当前页面数据
                 var dataHtml = "";
-                    dataHtml += `<div class="platemsg">
-                                <div class="user">
-                                    <span><img src="${data.section.imageUrl}" alt="" width="100px" height="100px"></span>
-                                    <a href="../HTML/plate.html?plateid=${data.section.sectionId}" class="plate"><h2>${data.section.sectionName}</h2></a>
-                                </div>
-                                <div>
-                                    <p>${data.section.description}</p>
-                                </div>
-                                <div class="time">
-                                    <p>${data.section.createTime}</p>
-                                </div>
-                                </div><div class="point">
-                                    <div><span class="p1"></span><p>100</p></div>
-                                    <div><span class="p2"></span><p>20</p></div>
-                                    <input type="button" value="关注" id="submit${data.section.sectionId}" class="submit">
-                                </div>`
+                    dataHtml += `<div class="data" onclick="jump(${data.page.list[item].postId})">
+                    <div class="user">
+                        <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
+                        <p>${data.page.list[item].username}</p>
+                        <a href="../HTML/plate.html?plateid=${data.page.list[item].sectionId}" class="plate"><p>${data.page.list[item].sectionName}</p></a>
+                    </div>
+                    <h4>${data.page.list[item].title}</h4>
+                    <div class="content">
+                        <p>${data.page.list[item].content}</p>
+                    </div>
+                    <div class="time">
+                        <p>${data.page.list[item].postDate}</p>
+                    </div>
+                </div>`
                 document.getElementById("platemsg").innerHTML = dataHtml;
             }
             else{

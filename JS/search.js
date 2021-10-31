@@ -1,14 +1,16 @@
-var plateid
+$( function() {
+    $( "#tabs" ).tabs();
+  } );
 (function(window){
     var url=location.search;
-    var plate=new Object();
+    var search=new Object();
     var str=url.split("?");
     var strs=str[1].split("&");
     for (var i=0;i<strs.length;i++){
-        plate[i]=decodeURI(strs[i].split("=")[1]);
+        search[i]=decodeURI(strs[i].split("=")[1]);
     }
-    plateid=plate[0];
-    console.log(plateid)
+    var searchtext=search[0];
+    console.log(searchtext)
     $( "#dialog" ).dialog({
         autoOpen: false,
         show: {
@@ -33,9 +35,9 @@ var plateid
         error: function() {
             $("#dialog p").html("信息加载失败")
             $( "#dialog" ).dialog( "open" );
-            setTimeout(function(){
-                location.href="../HTML/login.html";
-            },3000);
+            // setTimeout(function(){
+            //     location.href="../HTML/login.html";
+            // },3000);
         },
         success: function(data) {
             if(data.status==1){
@@ -284,7 +286,7 @@ editor.config.menus = [
 editor.config.uploadImgHeaders = {
     Authorization: localStorage.getItem('token') // 设置请求头
 }
-editor.config.uploadImgServer = 'http://windlinxy.top:8080/bluemsun_island/post/images'
+editor.config.uploadImgServer = 'http://jojo.vipgz1.idcfengye.com/bluemsun_island/post/images'
 // editor.config.showLinkImg = false
 // 3M
 editor.config.uploadImgMaxSize = 100 * 1024 * 1024
@@ -332,7 +334,6 @@ editor.config.uploadImgHooks = {
         // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
         // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
         console.log(result)
-        console.log(result.imageUrl)
         var url = result.imageUrl;
         insertImg(url);
         // result 必须是一个 JSON 格式字符串！！！否则报错

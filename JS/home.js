@@ -144,105 +144,6 @@
 
 //     window.createPager = createPager;
 // })(window)
-
-// 热门田地
-window.onload = function(){
-    $( "#dialog" ).dialog({
-        autoOpen: false,
-        show: {
-          effect: "blind",
-          duration: 1000
-        },
-        hide: {
-          effect: "explode",
-          duration: 1000
-        }
-      });
-    var token= localStorage.getItem("token");
-    console.log(token)
-    // var postDate={
-    //     "token":token
-    // }
-    $.ajax({
-        type: 'GET',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/hotsections?cur="+1+"&size="+5,
-        contentType: "application/json",
-        headers:{
-            "Authorization":token
-        },
-        // data:JSON.stringify(postDate),
-        error: function() {
-            $("#dialog p").html("信息加载失败")
-            $( "#dialog" ).dialog( "open" );
-            setTimeout(function(){
-                location.href="../HTML/login.html";
-            },3000);
-        },
-        success: function(data) {
-            if(data.status==1){
-                console.log(data)
-                // 渲染当前页面数据
-
-                var dataHtml = "";
-                for(var item=0;item< data.page.list.length;item++){
-                    dataHtml += `<div><a href="../HTML/plate.html?plateid=${data.page.list[item].sectionId}" >
-                    <span id="l${item+1}"></span>
-                    <p>${data.page.list[item].sectionName}</p>
-                    </a></div>`
-                }
-                document.getElementById("hotplate").innerHTML = dataHtml;
-            }
-            else{
-                console.log(data)
-                $("#dialog p").html("信息加载失败")
-                $( "#dialog" ).dialog( "open" );
-                setTimeout(function(){
-                    location.href="../HTML/login.html";
-                },3000);
-            }
-        }
-    });
-// 热门帖子
-    $.ajax({
-        type: 'GET',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/hotposts?cur="+1+"&size="+10,
-        contentType: "application/json",
-        headers:{
-            "Authorization":token
-        },
-        // data:JSON.stringify(postDate),
-        error: function() {
-            $("#dialog p").html("信息加载失败")
-            $( "#dialog" ).dialog( "open" );
-            setTimeout(function(){
-                location.href="../HTML/login.html";
-            },3000);
-        },
-        success: function(data) {
-            if(data.status==1){
-                console.log(data)
-                // 渲染当前页面数据
-
-                var dataHtml = "";
-                for(var item=0;item< data.page.list.length;item++){
-                    dataHtml += `<div><a href="../HTML/post.html?postid=${data.page.list[item].postId}">
-                    <span id="r${item+1}"></span>
-                    <p>${data.page.list[item].title}</p></a></div>`
-                }
-                document.getElementById("hotpost").innerHTML = dataHtml;
-            }
-            else{
-                console.log(data)
-                $("#dialog p").html("信息加载失败")
-                $( "#dialog" ).dialog( "open" );
-                setTimeout(function(){
-                    location.href="../HTML/login.html";
-                },3000);
-            }
-        }
-    });
-}
-
 // // 跳转详情
 // var data =document.getElementById("data");
 // data.addEventListener("click",function(e){
@@ -250,6 +151,12 @@ window.onload = function(){
 //     var button=e.target;
 //     var id =button.id;
 //     setTimeout(function(){
-//         location.href=`../html/plate.html`;
+//         location.href=`../html/post.html?`;
 //     },1000)
 // },false);
+
+// 搜索跳转
+$("#search").click(function(){
+    var searchtext=$("#searchtext").val()
+    location.href=`../html/search.html?searchtext=`+searchtext;
+})

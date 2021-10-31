@@ -165,9 +165,11 @@ h1{
 #left a:hover,#right a:hover{
     background-color:rgba(245, 222, 179, 0.7) ;
 }
-#left p,#right p{
+#left nobr,#right nobr{
     display: block;
     width: 80%;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 #left span,#right span{
     margin: auto auto auto 5px;
