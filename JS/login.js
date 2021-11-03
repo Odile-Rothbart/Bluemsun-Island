@@ -34,7 +34,7 @@ submit1.addEventListener("click",check1,false);
 // 背景转换
 function setbody1(){
     console.log(1)
-    $("body").css("background","url(../IMG/岛.png)");
+    $("body").css("background","url(../IMG/zmzm.png)");
     $("body").css("background-size","cover")
 }
 function setbody2(){
