@@ -16,7 +16,45 @@
     // var postDate={
     //     "token":token
     // }
-    
+    $.ajax({
+        type: 'GET',
+        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/hotsections?cur="+1+"&size="+5,
+        contentType: "application/json",
+        headers:{
+            "Authorization":token
+        },
+        // data:JSON.stringify(postDate),
+        error: function() {
+            $("#dialog p").html("信息加载失败")
+            $( "#dialog" ).dialog( "open" );
+            // setTimeout(function(){
+            //     location.href="../HTML/login.html";
+            // },3000);
+        },
+        success: function(data) {
+            if(data.status==1){
+                console.log(data)
+                // 渲染当前页面数据
+
+                var dataHtml = "";
+                for(var item=0;item< data.page.list.length;item++){
+                    dataHtml += `<div><a href="../HTML/plate.html?plateid=${data.page.list[item].sectionId}" >
+                    <span id="l${item+1}"></span>
+                    <nobr>${data.page.list[item].sectionName}</nobr>
+                    </a></div>`
+                }
+                document.getElementById("hotplate").innerHTML = dataHtml;
+            }
+            else{
+                console.log(data)
+                $("#dialog p").html("信息加载失败")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    location.href="../HTML/login.html";
+                },3000);
+            }
+        }
+    });
 // 热门帖子
     $.ajax({
         type: 'GET',
