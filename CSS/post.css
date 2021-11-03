@@ -134,7 +134,7 @@
 }
 .data .reply{
     width: 90%;
-    display: flex
+    display: none;
 }
 .data .reply input{
     width: 70%;
@@ -142,6 +142,18 @@
 .data .reply .submit{
     width: 15%;
     margin: 10px auto;
+}
+/* .content p{
+    width: 90%;
+    display: block;
+    word-break:break-all;
+    word-wrap:break-word;
+} */
+#dialogreply .content p{
+    width: 500px;
+    display: block;
+    word-break:break-all;
+    word-wrap:break-word;
 }
 /* 分页页码框 */
 #pager{

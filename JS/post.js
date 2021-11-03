@@ -128,7 +128,7 @@ function request(pager){
                 var dataHtml = "";
                 for(var item=0;item< data.page.list.length;item++){
                     
-                    dataHtml += `<div class="data">
+                    dataHtml += `<div class="data" onclick="show(${data.page.list[item].id})">
                                     <div class="user">
                                         <span><img src="${data.page.list[item].userPortrait}" alt="" width="40px" height="40px"></span>
                                         <p>${data.page.list[item].userName}</p>
@@ -138,11 +138,11 @@ function request(pager){
                                     </div>
                                     <div class="time">
                                         <p>${data.page.list[item].date}</p>
-                                        <a href="#">展开回复</a>
+                                        <a href="javascript:void(0);" onclick="showreply(${data.page.list[item].id})">展开回复</a>
                                     </div>
-                                    <div class="reply">
-                                        <input type="text" name="reply" id="reply${data.page.list[item].id}">
-                                        <input type="button" value="回复" id="submit${data.page.list[item].id}" class="submit">
+                                    <div class="reply" id="reply${data.page.list[item].id}">
+                                        <input type="text" name="reply" id="replytext${data.page.list[item].id}">
+                                        <input type="button" value="回复" id="submit${data.page.list[item].id}" class="submit" onclick="replypost(${data.page.list[item].id},${data.page.list[item].commenterId})">
                                     </div>
                                 </div>`
                 }
@@ -396,3 +396,169 @@ document.getElementById('submit').addEventListener('click', function () {
 }, false)
 
 editor.create();
+// 出现
+function show(data){
+    console.log(data)
+    $("#reply"+data).css("display","flex");
+}
+// 回复
+function replypost(data1,data2){    
+    var token= localStorage.getItem("token");
+        console.log(token)
+        var text=$("#replytext"+data1).val()
+        console.log(text)
+        var postDate={
+            "replyContent":text,
+        }
+        console.log(postDate)
+    $.ajax({
+        url : "http://jojo.vipgz1.idcfengye.com/bluemsun_island/:"+data1+"/replies/:"+data2,
+        type : "POST",
+        headers:{
+            "Authorization":token
+            },
+        contentType: "application/json",
+        data:JSON.stringify(postDate),
+        success : function(data) {
+            if(data.status==1){
+                console.log(data)
+                $("#dialog p").html("回复成功！")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                    $( "#dialogWrite" ).dialog( "close" );
+                    history.go(0)
+                },2000);
+            }
+            else{
+                console.log(data)
+                $("#dialog p").html("抱歉，回复失败")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                },2000);
+            }
+        },
+        error : function(msg) {
+            $("#dialog p").html("抱歉，回复失败")
+            $( "#dialog" ).dialog( "open" );
+            setTimeout(function(){
+                $( "#dialog" ).dialog( "close" );
+            },2000);
+            }
+    });
+}
+function replypost2(data1,data2,data3){    
+    var token= localStorage.getItem("token");
+        console.log(token)
+        var text=$("#dialogreply #replytext"+data3).val()
+        console.log(text)
+        var postDate={
+            "replyContent":text,
+        }
+        console.log(postDate)
+    $.ajax({
+        url : "http://jojo.vipgz1.idcfengye.com/bluemsun_island/:"+data1+"/replies/:"+data2,
+        type : "POST",
+        headers:{
+            "Authorization":token
+            },
+        contentType: "application/json",
+        data:JSON.stringify(postDate),
+        success : function(data) {
+            if(data.status==1){
+                console.log(data)
+                $("#dialog p").html("回复成功！")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                    $( "#dialogWrite" ).dialog( "close" );
+                    history.go(0)
+                },2000);
+            }
+            else{
+                console.log(data)
+                $("#dialog p").html("抱歉，回复失败")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                },2000);
+            }
+        },
+        error : function(msg) {
+            $("#dialog p").html("抱歉，回复失败")
+            $( "#dialog" ).dialog( "open" );
+            setTimeout(function(){
+                $( "#dialog" ).dialog( "close" );
+            },2000);
+            }
+    });
+}
+// 展示回复
+function showreply(data){
+    $( "#dialogreply" ).dialog({
+        autoOpen: false,
+        width: "600",
+        height:"700",
+        show: {
+          effect: "blind",
+          duration: 1000
+        },
+        hide: {
+          effect: "explode",
+          duration: 1000
+        }
+      });
+    var token= localStorage.getItem("token");
+    console.log(token)
+    $.ajax({
+        url : "http://jojo.vipgz1.idcfengye.com/bluemsun_island/:"+data+"/replies?cur=1&size=1000",
+        type : "GET",
+        headers:{
+            "Authorization":token
+            },
+        contentType: "application/json",
+        success : function(data) {
+            if(data.status==1){
+                console.log(data)
+                var dataHtml = "";
+                for(var item=0;item< data.page.list.length;item++){
+
+                    dataHtml += `<div class="data" onclick="show(${data.page.list[item].replyId})">
+                                    <div class="user">
+                                        <span><img src="${data.page.list[item].replierPortrait}" alt="" width="40px" height="40px"></span>
+                                        <p>${data.page.list[item].replier}</p><p>回复了</p><p>${data.page.list[item].beReplier}</p>
+                                    </div>
+                                    <div class="content">
+                                        <p>${data.page.list[item].replyContent}</p>
+                                    </div>
+                                    <div class="time">
+                                        <p>${data.page.list[item].replyDate}</p>
+                                    </div>
+                                    <div class="reply" id="reply${data.page.list[item].replyId}">
+                                        <input type="text" name="reply" id="replytext${data.page.list[item].replyId}">
+                                        <input type="button" value="回复" id="submit${data.page.list[item].replyId}" class="submit" onclick="replypost2(${data.page.list[item].repliedCommentId},${data.page.list[item].repliedId},${data.page.list[item].replyId})">
+                                    </div>
+                                </div>`
+                }
+                document.getElementById("dialogreply").innerHTML = dataHtml;
+                $( "#dialogreply" ).dialog( "open" );
+            }
+            else{
+                console.log(data)
+                $("#dialog p").html("抱歉，展示失败")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                },2000);
+            }
+        },
+        error : function(msg) {
+            $("#dialog p").html("抱歉，展示失败")
+            $( "#dialog" ).dialog( "open" );
+            setTimeout(function(){
+                $( "#dialog" ).dialog( "close" );
+            },2000);
+            }
+    });
+}
