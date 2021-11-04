@@ -132,9 +132,7 @@ function request(pager){
                                         <a href="../HTML/plate.html?plateid=${data.page.list[item].sectionId}" class="plate"><p>${data.page.list[item].sectionName}</p></a>
                                     </div>
                                     <h4>${data.page.list[item].title}</h4>
-                                    <div class="content">
-                                        <p>${data.page.list[item].content}</p>
-                                    </div>
+                                    
                                     <div class="time">
                                         <p>${data.page.list[item].postDate}</p>
                                     </div>
@@ -348,7 +346,7 @@ document.getElementById('submit').addEventListener('click', function () {
       console.log(title)
       console.log(content);
       // 读取 text
-        var announcement_mag = editor.txt.text();
+        var announcement_mag = editor.txt.html();
         // alert(announcement_mag)    
         var token= localStorage.getItem("token");
         console.log(token)
@@ -373,7 +371,7 @@ document.getElementById('submit').addEventListener('click', function () {
                 setTimeout(function(){
                     $( "#dialog" ).dialog( "close" );
                     $( "#dialogWrite" ).dialog( "close" );
-                    history.go(0)
+                    // history.go(0)
                 },2000);
             }
             else{

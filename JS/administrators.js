@@ -24,12 +24,12 @@
         bindEvent(pager);
     }
 
-    // var search=document.getElementById("search");
-    // function searchall(){
-    //     defaultPager.search=document.getElementById("searchtext").value;
-    //     window.createPager();
-    // }
-    // search.addEventListener("click",searchall,false);
+    var search=document.getElementById("search");
+    function searchall(){
+        defaultPager.search=document.getElementById("searchtext").value;
+        window.createPager();
+    }
+    search.addEventListener("click",searchall,false);
     
     function request(pager){
         var token= localStorage.getItem("token");
@@ -38,9 +38,10 @@
         //     "cur":pager.currentPage,
         //     "size":pager.limit
         // }
+        console.log(pager.search);
         $.ajax({
             type: 'GET',
-            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
+            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users/:"+pager.search+"?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
             headers:{
                 "Authorization":token
             },
