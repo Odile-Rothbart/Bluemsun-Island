@@ -42,8 +42,7 @@ window.onload = function(){
                 $(`input[name='sex'][value=${data.user.sex}]`).attr("checked",true); 
                 $("#birthday").attr('value',data.user.birthday);
                 $("#signature").val(data.user.signature);
-                console.log(data.user.imageUrl)
-                document.getElementById("show").innerHTML = `<img src="${data.user.imageUrl}" width="150px" height="150px">`
+                $(".show").html(`<img src="${data.user.imageUrl}" width="150px" height="150px">`)
             }
             else{
                 console.log(data)
@@ -55,12 +54,30 @@ window.onload = function(){
             }
         }
     });
+    $( "#dialogWrite" ).dialog({
+        autoOpen: false,
+        width: "600",
+        show: {
+          effect: "blind",
+          duration: 1000
+        },
+        hide: {
+          effect: "explode",
+          duration: 1000
+        }
+      });
+    $(".show").click(function(){
+        $( "#dialogWrite" ).dialog( "open" );
+    })
+    $("#cancel").click(function(){
+        $( "#dialogWrite" ).dialog( "close" );
+    })
     $("#file").change(function(){
         var file = document.getElementById("file").files[0];
         console.log(file)
         var reader = new FileReader();   //将图片格式转化成base64
         reader.addEventListener("load", function () {
-            document.getElementById("show").innerHTML = `<img src="${reader.result}" width="150px" height="150px">`
+            $(".show").html(`<img src="${reader.result}" width="150px" height="150px">`)
         }, false);
         if(file){
             reader.readAsDataURL(file);
@@ -95,6 +112,7 @@ window.onload = function(){
                         $( "#dialog" ).dialog( "open" );
                         setTimeout(function(){
                             $( "#dialog" ).dialog( "close" );
+                            history.go(0)
                         },2000);
                     }
                     else{

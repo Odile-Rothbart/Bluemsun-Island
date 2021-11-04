@@ -34,7 +34,7 @@ form div{
     margin: 0 auto;
     justify-content: space-around;
 }
-#show img{
+.show img{
     width: 150px;
     height: 150px;
     border-radius: 150px;
@@ -76,6 +76,11 @@ input{
 }
 .submit:hover{
 	background-color: rgb(143, 77, 38);
+}
+#dialogWrite {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .form{
     /* height: 400px; */

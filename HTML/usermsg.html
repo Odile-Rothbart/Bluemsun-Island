@@ -39,12 +39,11 @@
             <form >
                 <div class="file">
                     <label>头像:</label>
-                    <div id="show">
+                    <div class="show">
                         
                     </div>
-                    <input type="file" name="file" id="file" multiple>
-                    <input type="button" id="submit1" value="提交" class="submit">
                 </div>
+                
                 <div class="input">
                     <label for="username">用户名:</label>
                     <input type="text" name="username" id="username" placeholder="用户名">
@@ -70,6 +69,16 @@
                 <input type="button" value="确认修改" id="submit2" class="submit">
             </form>
         </section>
+        <div id="dialogWrite" title="更改头像">
+            <div class="show">
+            
+            </div>
+            <input type="file" name="file" id="file" multiple>
+            <div style="display: flex; width: 90%;">
+                <input type="button" id="submit1" value="确认修改" class="submit">
+                <input type="button" value="取消" class="submit" id="cancel">
+            </div>
+        </div>
         <section id="right">
             <h3>热门苇絮</h3>
             <div id="hotpost">
