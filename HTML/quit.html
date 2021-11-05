@@ -7,7 +7,7 @@
     <title>蓝旭岛</title>
     <link rel="stylesheet" href="../CSS/jquery-ui.min.css">
     <link rel="stylesheet" href="../CSS/header.css">
-    <link rel="stylesheet" href="../CSS/usermsg.css">
+    <link rel="stylesheet" href="../CSS/quit.css">
     <script src="../JS/external/jquery/jquery.js"></script>
     <script src="../JS/jquery-ui.min.js"></script>
 </head>
@@ -36,25 +36,35 @@
             </ul>
         </section>
         <section id="middle">
-            <h1>申请新的田地</h1>
+            <h1>退出登录</h1>
             <form >
                 <div class="file">
                     <label>头像:</label>
-                    <div id="show">
+                    <div class="show">
                         
                     </div>
-                    <input type="file" name="file" id="file" multiple>
-                    <input type="button" id="submit1" value="提交" class="submit">
                 </div>
                 <div class="input">
-                    <label for="username">田地名:</label>
-                    <input type="text" name="username" id="username" placeholder="田地名">
+                    <label for="username">用户名:</label>
+                    <p id="username"> </p>
                 </div>
                 <div class="input">
-                    <label for="signature" class="sign">田地简介:</label>
-                    <textarea name="signature" id="signature" cols="30" rows="10" placeholder="这块田地还没有简介"></textarea>
+                    <label for="tel">电话号码:</label>
+                    <p id="tel"> </p>
                 </div>
-                <input type="button" value="立即申请" id="submit2" class="submit">
+                <div class="input sex">
+                    <label for="sex">性别:</label>
+                    <p id="sex"> </p>
+                </div>
+                <div class="input">
+                    <label for="birthday">生日:</label>
+                    <p id="birthday"> </p>
+                </div>
+                <div class="input">
+                    <label for="signature" class="sign">个性签名:</label>
+                    <p id="signature"> </p>
+                </div>
+                <input type="button" value="退出登录" id="submit" class="submit">
             </form>
         </section>
         <section id="right">
@@ -69,6 +79,6 @@
     </div>
 </body>
 <script src="../JS/header.js"></script>
-<script src="../JS/apply.js"></script>
+<script src="../JS/quit.js"></script>
 <script src="../JS/hot.js"></script>
 </html>

@@ -56,7 +56,7 @@ function request(pager){
     // }
     $.ajax({
         type: 'GET',
-        url:"http://windlinxy.top:8080/bluemsun_island//posts/title/:"+searchtext+"?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
+        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/posts/title/:"+searchtext+"?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
         headers:{
             "Authorization":token
         },
