@@ -40,7 +40,7 @@
         // }
         $.ajax({
             type: 'GET',
-            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/sections/"+pager.search+"?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
+            url:"http://windlinxy.top:8080/bluemsun_island/sections/"+pager.search+"?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
             headers:{
                 "Authorization":token
             },
@@ -235,7 +235,7 @@ function frozenplate(data1,data2){
     }
     $.ajax({
         type: 'PATCH',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/sections/:"+data1+"/:"+data2,
+        url:"http://windlinxy.top:8080/bluemsun_island/sections/:"+data1+"/:"+data2,
         headers:{
             "Authorization":token
         },

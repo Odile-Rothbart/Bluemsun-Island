@@ -40,7 +40,7 @@
         // }
         $.ajax({
             type: 'GET',
-            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/audits?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
+            url:"http://windlinxy.top:8080/bluemsun_island/audits?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
             headers:{
                 "Authorization":token
             },
@@ -196,7 +196,7 @@ function agreenotice(data){
     console.log(token)
     $.ajax({
         type: 'PATCH',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/audits/:"+data+"/1",
+        url:"http://windlinxy.top:8080/bluemsun_island/audits/:"+data+"/1",
         headers:{
             "Authorization":token
         },
@@ -234,7 +234,7 @@ function rejectnotice(data){
     console.log(token)
     $.ajax({
         type: 'PATCH',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/audits/:"+data+"/-1",
+        url:"http://windlinxy.top:8080/bluemsun_island/audits/:"+data+"/-1",
         headers:{
             "Authorization":token
         },

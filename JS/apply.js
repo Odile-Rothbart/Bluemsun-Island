@@ -18,7 +18,7 @@ window.onload = function(){
     // }
     $.ajax({
         type: 'GET',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/user",
+        url:"http://windlinxy.top:8080/bluemsun_island/user",
         contentType: "application/json",
         headers:{
             "Authorization":token
@@ -114,7 +114,7 @@ window.onload = function(){
         console.log(postDate)
         $.ajax({
             type: 'POST',
-            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/sections/audit",
+            url:"http://windlinxy.top:8080/bluemsun_island/sections/audit",
             headers:{
                 "Authorization":token
             },

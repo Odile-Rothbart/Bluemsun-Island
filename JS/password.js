@@ -54,7 +54,7 @@ window.onload = function(){
         console.log(postDate)
         $.ajax({
             type: 'PATCH',
-            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users",
+            url:"http://windlinxy.top:8080/bluemsun_island/users",
             headers:{
                 "Authorization":token
             },

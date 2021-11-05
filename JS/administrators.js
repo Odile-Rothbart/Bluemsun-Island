@@ -41,7 +41,7 @@
         console.log(pager.search);
         $.ajax({
             type: 'GET',
-            url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users/:"+pager.search+"?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
+            url:"http://windlinxy.top:8080/bluemsun_island/users/:"+pager.search+"?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
             headers:{
                 "Authorization":token
             },
@@ -191,7 +191,7 @@ function deleteuser(data){
     console.log(token)
     $.ajax({
         type: 'DELETE',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users/:"+data,
+        url:"http://windlinxy.top:8080/bluemsun_island/users/:"+data,
         headers:{
             "Authorization":token
         },
@@ -235,7 +235,7 @@ function banuser(data1,data2){
     }
     $.ajax({
         type: 'PATCH',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/users/:"+data1+"/:"+data2,
+        url:"http://windlinxy.top:8080/bluemsun_island/users/:"+data1+"/:"+data2,
         headers:{
             "Authorization":token
         },

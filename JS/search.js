@@ -196,5 +196,5 @@ function request(pager){
 
 // 跳转
 function jump(data){
-    location.href=`../html/post.html?postid=`+data;
+    location.href=`../HTML/post.html?postid=`+data;
 }

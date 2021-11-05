@@ -24,7 +24,7 @@ var postid
     console.log(token)
     $.ajax({
         type: 'GET',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/posts/"+postid,
+        url:"http://windlinxy.top:8080/bluemsun_island/posts/"+postid,
         contentType: "application/json",
         headers:{
             "Authorization":token
@@ -105,7 +105,7 @@ function request(pager){
     // }
     $.ajax({
         type: 'GET',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/:"+postid+"/comments?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
+        url:"http://windlinxy.top:8080/bluemsun_island/:"+postid+"/comments?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
         headers:{
             "Authorization":token
         },
@@ -357,7 +357,7 @@ document.getElementById('submit').addEventListener('click', function () {
         }
         console.log(postDate)
       $.ajax({
-        url : "http://jojo.vipgz1.idcfengye.com/bluemsun_island/:"+postid+"/comments?",
+        url : "http://windlinxy.top:8080/bluemsun_island/:"+postid+"/comments?",
         type : "POST",
         headers:{
             "Authorization":token
@@ -412,7 +412,7 @@ function replypost(data1,data2){
         }
         console.log(postDate)
     $.ajax({
-        url : "http://jojo.vipgz1.idcfengye.com/bluemsun_island/:"+data1+"/replies/:"+data2,
+        url : "http://windlinxy.top:8080/bluemsun_island/:"+data1+"/replies/:"+data2,
         type : "POST",
         headers:{
             "Authorization":token
@@ -458,7 +458,7 @@ function replypost2(data1,data2,data3){
         }
         console.log(postDate)
     $.ajax({
-        url : "http://jojo.vipgz1.idcfengye.com/bluemsun_island/:"+data1+"/replies/:"+data2,
+        url : "http://windlinxy.top:8080/bluemsun_island/:"+data1+"/replies/:"+data2,
         type : "POST",
         headers:{
             "Authorization":token
@@ -512,7 +512,7 @@ function showreply(data){
     var token= localStorage.getItem("token");
     console.log(token)
     $.ajax({
-        url : "http://jojo.vipgz1.idcfengye.com/bluemsun_island/:"+data+"/replies?cur=1&size=1000",
+        url : "http://windlinxy.top:8080/bluemsun_island/:"+data+"/replies?cur=1&size=1000",
         type : "GET",
         headers:{
             "Authorization":token

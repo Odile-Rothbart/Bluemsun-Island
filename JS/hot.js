@@ -20,7 +20,7 @@
 // 热门帖子
     $.ajax({
         type: 'GET',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/hotposts?cur="+1+"&size="+10,
+        url:"http://windlinxy.top:8080/bluemsun_island/hotposts?cur="+1+"&size="+10,
         contentType: "application/json",
         headers:{
             "Authorization":token

@@ -24,7 +24,7 @@ var plateid
     console.log(token)
     $.ajax({
         type: 'GET',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/sections/:"+plateid,
+        url:"http://windlinxy.top:8080/bluemsun_island/sections/:"+plateid,
         contentType: "application/json",
         headers:{
             "Authorization":token
@@ -102,7 +102,7 @@ function request(pager){
     // }
     $.ajax({
         type: 'GET',
-        url:"http://jojo.vipgz1.idcfengye.com/bluemsun_island/sections/:"+plateid+"/posts?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
+        url:"http://windlinxy.top:8080/bluemsun_island/sections/:"+plateid+"/posts?cur="+Number(pager.currentPage)+"&size="+Number(pager.limit),
         headers:{
             "Authorization":token
         },
@@ -356,7 +356,7 @@ document.getElementById('submit').addEventListener('click', function () {
         }
         console.log(postDate)
       $.ajax({
-        url : "http://jojo.vipgz1.idcfengye.com/bluemsun_island/:"+plateid+"/posts?",
+        url : "http://windlinxy.top:8080/bluemsun_island/:"+plateid+"/posts?",
         type : "post",
         headers:{
             "Authorization":token
