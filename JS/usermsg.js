@@ -70,7 +70,7 @@ window.onload = function(){
         $( "#dialogWrite" ).dialog( "open" );
     })
     $("#cancel").click(function(){
-        $( "#dialogWrite" ).dialog( "close" );
+        history.go(0)
     })
     $("#file").change(function(){
         var file = document.getElementById("file").files[0];

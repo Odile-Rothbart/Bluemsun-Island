@@ -63,7 +63,7 @@ input{
 	border-bottom: solid rgba(0, 0, 0, 0.65);
 	border-width: 0.1em;
 }
-p{
+.input p{
     width: 70%;
     display: block;
     margin: 0 auto 0 5%;

@@ -14,19 +14,28 @@
 .searchdata .user{
     margin: 5px auto 5px 10px;
 }
-.user img{
+.searchdata .user img{
     border-radius: 40px;
 }
 .user p{
     height: 40px;
-    font-size: small;
     line-height: 40px;
     text-align: center;
     display: block;
     margin: 0 auto 0 10px;
 }
-.searchdata .time{
+.searchdata h4{
     margin: 5px auto 5px 10px;
+    font-family: 仿宋;
+    font-weight: 1000;
+}
+.searchdata .content{
+    display: block;
+    margin: 5px auto 5px 10px;
+    color: rgb(170, 169, 169);
+}
+.searchdata .time{
+    margin: 5px 10px 5px auto;
     font-size: small;
     color: rgb(170, 169, 169);
 }
@@ -52,7 +61,7 @@
     width: 50%;
     text-align: center;
 }
-.searchdata .point .p1{
+.data .point .p1{
     background-position: -200px -140px;
 }
 .searchdata .point .p2{
@@ -64,4 +73,21 @@
 .searchdata .user .plate{
     text-decoration: none;
     color:rgb(143, 77, 38) ;
+}
+/* 分页页码框 */
+#pager1{
+    display: flex;
+    justify-content: center;
+}
+#pager1 div{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 8px;
+}
+div.selected{
+    background-color: rgb(143, 77, 38);
+    color: white;
+}
+div.omit{
+    color: #999;
 }
