@@ -46,7 +46,7 @@
                 }
                 document.getElementById("hotpost").innerHTML = dataHtml;
             }
-            if(data.status==2){
+            else if(data.status==2){
                 console.log(data)
                 $("#dialog p").html("未登录，请先登录")
                 $( "#dialog" ).dialog( "open" );

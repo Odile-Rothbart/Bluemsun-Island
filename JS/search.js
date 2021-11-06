@@ -109,7 +109,7 @@ $( function() {
                         $(".data").html(dataHtml)
                         show(pager);
                     }
-                    if(data.status==2){
+                    else if(data.status==2){
                         console.log(data)
                         $("#dialog p").html("未登录，请先登录")
                         $( "#dialog" ).dialog( "open" );
@@ -170,7 +170,7 @@ $( function() {
                         $(".data").html(dataHtml)
                         show2(pager);
                     }
-                    if(data.status==2){
+                    else if(data.status==2){
                         console.log(data)
                         $("#dialog p").html("未登录，请先登录")
                         $( "#dialog" ).dialog( "open" );
