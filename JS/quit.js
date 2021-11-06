@@ -71,3 +71,8 @@ window.onload = function(){
         },3000);
     })
 }
+// 搜索跳转
+$("#search").click(function(){
+    var searchtext=$("#searchtext").val()
+    location.href=`../HTML/search.html?searchtext=`+searchtext;
+})

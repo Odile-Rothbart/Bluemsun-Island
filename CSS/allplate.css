@@ -31,6 +31,9 @@ header h1{
     margin: auto 10% auto auto;
     padding: 4px;
 }
+#searchtext{
+    padding: 5px;
+}
 #input input{
     width: 70%;
     height: 30px;

@@ -31,7 +31,8 @@ header{
     margin: 2px auto;
     border-radius: 20px;
     background-color: white;
-}#input #searchtext{
+}
+#input #searchtext{
     padding: 5px;
 }
 #input #search{
