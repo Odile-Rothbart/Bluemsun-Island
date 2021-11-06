@@ -79,13 +79,21 @@ function request(pager){
                 document.getElementById("data").innerHTML = dataHtml;
                 show(pager);
             }
+            if(data.status==2){
+                console.log(data)
+                $("#dialog p").html("未登录，请先登录")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    location.href="../HTML/login.html";
+                },3000);
+            }
             else{
                 console.log(data)
                 $("#dialog p").html("信息加载失败")
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){
-                    location.href="../HTML/login.html";
-                },3000);
+                    $( "#dialog" ).dialog( "close" );
+                },2000);
             }
         }
     });

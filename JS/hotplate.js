@@ -27,9 +27,9 @@
         error: function() {
             $("#dialog p").html("信息加载失败")
             $( "#dialog" ).dialog( "open" );
-            // setTimeout(function(){
-            //     location.href="../HTML/login.html";
-            // },3000);
+            setTimeout(function(){
+                location.href="../HTML/login.html";
+            },3000);
         },
         success: function(data) {
             if(data.status==1){
@@ -45,13 +45,21 @@
                 }
                 document.getElementById("hotplate").innerHTML = dataHtml;
             }
+            if(data.status==2){
+                console.log(data)
+                $("#dialog p").html("未登录，请先登录")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    location.href="../HTML/login.html";
+                },3000);
+            }
             else{
                 console.log(data)
                 $("#dialog p").html("信息加载失败")
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){
-                    location.href="../HTML/login.html";
-                },3000);
+                    $( "#dialog" ).dialog( "close" );
+                },2000);
             }
         }
     });
@@ -67,9 +75,9 @@
         error: function() {
             $("#dialog p").html("信息加载失败")
             $( "#dialog" ).dialog( "open" );
-            // setTimeout(function(){
-            //     location.href="../HTML/login.html";
-            // },3000);
+            setTimeout(function(){
+                location.href="../HTML/login.html";
+            },3000);
         },
         success: function(data) {
             if(data.status==1){
@@ -84,13 +92,21 @@
                 }
                 document.getElementById("hotpost").innerHTML = dataHtml;
             }
+            if(data.status==2){
+                console.log(data)
+                $("#dialog p").html("未登录，请先登录")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    location.href="../HTML/login.html";
+                },3000);
+            }
             else{
                 console.log(data)
                 $("#dialog p").html("信息加载失败")
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){
-                    location.href="../HTML/login.html";
-                },3000);
+                    $( "#dialog" ).dialog( "close" );
+                },2000);
             }
         }
     });
