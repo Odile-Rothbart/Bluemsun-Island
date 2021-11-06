@@ -10,7 +10,7 @@ $( function() {
         pageNumber: 0 ,      //总页数
         search:''
     };
-    createPager()
+    
     function createPager(pager){
         pager = Object.assign(defaultPager, pager);
         request(pager);
@@ -26,7 +26,7 @@ $( function() {
         var searchtext=search[0];
         console.log(searchtext)
         defaultPager.search=searchtext;
-        
+        document.getElementById("searchtext").value=searchtext
         $( "#dialog" ).dialog({
             autoOpen: false,
             show: {
@@ -193,7 +193,7 @@ $( function() {
             request(pager);
 
         }
-
+        createPager()
   } );
 
 
@@ -206,7 +206,6 @@ $( function() {
         pageNumber: 0 ,      //总页数
         search:''
     };
-    createPager()
     function createPager(pager){
         pager = Object.assign(defaultPager, pager);
         request(pager);
@@ -383,6 +382,8 @@ function toPage(page, pager){
     request(pager);
 
 }
+createPager()
+
 });
      
 
