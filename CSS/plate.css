@@ -77,8 +77,11 @@
     height: 20px;
     border-radius: 3px;
 }
+#data div{
+    display: flex;
+}
 .data{
-    width: 95%;
+    width: 90%;
     background-color: white;
     border-radius: 5px;
     border: solid 0.2em rgb(143, 77, 38);
@@ -95,6 +98,15 @@
 }
 .data .user img{
     border-radius: 40px;
+}
+.data .user .toppost{
+    background-color: rgb(156, 22, 22);
+    color: white;
+    text-align: center;
+    margin: 5px 5px auto;
+    padding: 3px;
+    border-radius: 3px;
+    display: block;
 }
 .user p{
     height: 40px;
@@ -152,6 +164,25 @@
 .data .user .plate{
     text-decoration: none;
     color:rgb(143, 77, 38) ;
+}
+.master{
+    width: 7%;
+    justify-content: center;
+    flex-direction: column;
+}
+.master div{
+    margin: 2px auto;
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    width: 100%;
+    background-color:rgb(143, 77, 38) ;
+    color: white;
+    text-align: center;
+    justify-content: center;
+
 }
 /* 分页页码框 */
 #pager{

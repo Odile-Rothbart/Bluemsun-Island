@@ -22,6 +22,7 @@ var plateid
       });
     var token= localStorage.getItem("token");
     console.log(token)
+    var master;
     $.ajax({
         type: 'GET',
         url:"http://windlinxy.top:8080/bluemsun_island/sections/:"+plateid,
@@ -41,6 +42,7 @@ var plateid
             if(data.status==1){
                 console.log(data)
                 // 渲染当前页面数据
+                master=data.master
                 var dataHtml = "";
                     dataHtml += `<div class="platemsg">
                                 <div class="user">
@@ -121,27 +123,146 @@ function request(pager){
                 pager.total = data.page.totalRecord;
                 pager.pageNumber = Math.ceil(pager.total/ pager.limit);
                 // 渲染当前页面数据
-
                 var dataHtml = "";
                 for(var item=0;item< data.page.list.length;item++){
+                    var status
+                    var poststatus
+                    if(data.page.list[item].status==-1){
+                        status="解禁"
+                        poststatus=0
+                    }
+                    if(data.page.list[item].status==0){
+                        status="封禁"
+                        poststatus=-1
+                    }
+                    if(data.page.list[item].status==0){
+                        if(master==0){
+                            dataHtml += `<div class="data" onclick="jump(${data.page.list[item].postId})">
+                            <div class="user">
+                                <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
+                                <p>${data.page.list[item].username}</p>
+                                <a href="../HTML/plate.html?plateid=${data.page.list[item].sectionId}" class="plate"><p>${data.page.list[item].sectionName}</p></a>
+                            </div>
+                            <h4>${data.page.list[item].title}</h4>
+                            
+                            <div class="time">
+                                <p>${data.page.list[item].postDate}</p>
+                            </div>
+                            <div class="point">
+                                <div><span class="p1"></span><p>${data.page.list[item].accessNumber}</p></div>
+                                <div><span class="p2"></span><p>${data.page.list[item].commentNumber}</p></div>
+                                <div><span class="p3"></span><p>${data.page.list[item].likeNumber}</p></div>
+                            </div>
+                        </div>`
+                        }
+                        else{
+                            dataHtml += `<div ><div class="data" onclick="jump(${data.page.list[item].postId})">
+                            <div class="user">
+                                <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
+                                <p>${data.page.list[item].username}</p>
+                                <a href="../HTML/plate.html?plateid=${data.page.list[item].sectionId}" class="plate"><p>${data.page.list[item].sectionName}</p></a>
+                                
+                            </div>
+                            <h4>${data.page.list[item].title}</h4>
+                            
+                            <div class="time">
+                                <p>${data.page.list[item].postDate}</p>
+                            </div>
+                            <div class="point">
+                                <div><span class="p1"></span><p>${data.page.list[item].accessNumber}</p></div>
+                                <div><span class="p2"></span><p>${data.page.list[item].commentNumber}</p></div>
+                                <div><span class="p3"></span><p>${data.page.list[item].likeNumber}</p></div>
+                            </div>
+                            
+                        </div>
+                        <div class="master">
+                            <div   id="ban${data.page.list[item].postId}" onclick="change(${data.page.list[item].postId},${poststatus})">${status}</div>
+                            <div   id="delete${data.page.list[item].postId}" onclick="deletepost(${data.page.list[item].sectionId},${data.page.list[item].postId})">删除</div>
+                            <div   id="top${data.page.list[item].postId}" onclick="change(${data.page.list[item].postId},1)">置顶</div>
+                        </div></div>`
+                        }
                     
-                    dataHtml += `<div class="data" onclick="jump(${data.page.list[item].postId})">
-                                    <div class="user">
-                                        <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
-                                        <p>${data.page.list[item].username}</p>
-                                        <a href="../HTML/plate.html?plateid=${data.page.list[item].sectionId}" class="plate"><p>${data.page.list[item].sectionName}</p></a>
-                                    </div>
-                                    <h4>${data.page.list[item].title}</h4>
-                                    
-                                    <div class="time">
-                                        <p>${data.page.list[item].postDate}</p>
-                                    </div>
-                                    <div class="point">
-                                        <div><span class="p1"></span><p>${data.page.list[item].accessNumber}</p></div>
-                                        <div><span class="p2"></span><p>${data.page.list[item].commentNumber}</p></div>
-                                        <div><span class="p3"></span><p>${data.page.list[item].likeNumber}</p></div>
-                                    </div>
-                                </div>`
+                    }
+                    if(data.page.list[item].status==1){
+                        if(master==0){
+                            dataHtml += `<div class="data" onclick="jump(${data.page.list[item].postId})">
+                            <div class="user">
+                                <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
+                                <p>${data.page.list[item].username}</p>
+                                <a href="../HTML/plate.html?plateid=${data.page.list[item].sectionId}" class="plate"><p>${data.page.list[item].sectionName}</p></a>
+                                <span>置顶</span>
+                            </div>
+                            <h4>${data.page.list[item].title}</h4>
+                            
+                            <div class="time">
+                                <p>${data.page.list[item].postDate}</p>
+                            </div>
+                            <div class="point">
+                                <div><span class="p1"></span><p>${data.page.list[item].accessNumber}</p></div>
+                                <div><span class="p2"></span><p>${data.page.list[item].commentNumber}</p></div>
+                                <div><span class="p3"></span><p>${data.page.list[item].likeNumber}</p></div>
+                            </div>
+                        </div>`
+                        }
+                        else{
+                            dataHtml += `
+                            <div ><div class="data" onclick="jump(${data.page.list[item].postId})">
+                            <div class="user">
+                                <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
+                                <p>${data.page.list[item].username}</p>
+                                <a href="../HTML/plate.html?plateid=${data.page.list[item].sectionId}" class="plate"><p>${data.page.list[item].sectionName}</p></a>
+                                <span class="toppost">置顶</span>
+                            </div>
+                            <h4>${data.page.list[item].title}</h4>
+                            
+                            <div class="time">
+                                <p>${data.page.list[item].postDate}</p>
+                            </div>
+                            <div class="point">
+                                <div><span class="p1"></span><p>${data.page.list[item].accessNumber}</p></div>
+                                <div><span class="p2"></span><p>${data.page.list[item].commentNumber}</p></div>
+                                <div><span class="p3"></span><p>${data.page.list[item].likeNumber}</p></div>
+                            </div>
+                            
+                        </div>
+                        <div class="master">
+                            <div   id="ban${data.page.list[item].postId}" onclick="change(${data.page.list[item].postId},${poststatus})">封禁</div>
+                            <div   id="delete${data.page.list[item].postId}" onclick="deletepost(${data.page.list[item].sectionId},${data.page.list[item].postId})">删除</div>
+                            <div   id="top${data.page.list[item].postId}" onclick="change(${data.page.list[item].postId},0)">取消置顶</div>
+                        </div></div>`
+                        }
+                    
+                    }
+                    if(data.page.list[item].status==-1){
+                        if(master==1){
+                            dataHtml += `
+                            <div ><div class="data" onclick="jump(${data.page.list[item].postId})">
+                            <div class="user">
+                                <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
+                                <p>${data.page.list[item].username}</p>
+                                <a href="../HTML/plate.html?plateid=${data.page.list[item].sectionId}" class="plate"><p>${data.page.list[item].sectionName}</p></a>
+                                <span class="toppost">置顶</span>
+                            </div>
+                            <h4>${data.page.list[item].title}</h4>
+                            
+                            <div class="time">
+                                <p>${data.page.list[item].postDate}</p>
+                            </div>
+                            <div class="point">
+                                <div><span class="p1"></span><p>${data.page.list[item].accessNumber}</p></div>
+                                <div><span class="p2"></span><p>${data.page.list[item].commentNumber}</p></div>
+                                <div><span class="p3"></span><p>${data.page.list[item].likeNumber}</p></div>
+                            </div>
+                            
+                        </div>
+                        <div class="master">
+                            <div   id="ban${data.page.list[item].postId}" onclick="change(${data.page.list[item].postId},${poststatus})">${status}</div>
+                            <div   id="delete${data.page.list[item].postId}" onclick="deletepost(${data.page.list[item].sectionId},${data.page.list[item].postId})">删除</div>
+                            <div   id="top${data.page.list[item].postId}" onclick="change(${data.page.list[item].postId},0)">取消置顶</div>
+                        </div></div>`
+                        }
+                    
+                    }
                 }
                 document.getElementById("data").innerHTML = dataHtml;
                 show(pager);
@@ -371,7 +492,7 @@ document.getElementById('submit').addEventListener('click', function () {
                 setTimeout(function(){
                     $( "#dialog" ).dialog( "close" );
                     $( "#dialogWrite" ).dialog( "close" );
-                    // history.go(0)
+                    history.go(0)
                 },2000);
             }
             else{
@@ -399,4 +520,82 @@ editor.create();
 // 跳转
 function jump(data){
     location.href=`../HTML/post.html?postid=`+data;
+}
+
+// 改变置顶状态
+function change(data1,data2){
+    var token= localStorage.getItem("token");
+    console.log(token)
+    $.ajax({
+        type: 'PATCH',
+        url:"http://windlinxy.top:8080/bluemsun_island/posts/:"+data1+"/"+data2,
+        headers:{
+            "Authorization":token
+        },
+        contentType: "application/json",
+        error: function() {
+            $("#dialog p").html("失败，请重试")
+            $( "#dialog" ).dialog( "open" );
+            setTimeout(function(){
+                $( "#dialog" ).dialog( "close" );
+            },2000);
+        },
+        success: function(data) {
+            if(data.status==1){
+                $("#dialog p").html("成功")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                    history.go(0)
+                 },2000);
+            }
+            else{
+                console.log(data)
+                $("#dialog p").html("失败，请重试")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                },2000);
+            }
+        }
+    });
+}
+// 删除
+
+function deletepost(data1,data2){
+    var token= localStorage.getItem("token");
+    console.log(token)
+    $.ajax({
+        type: 'DELETE',
+        url:"http://windlinxy.top:8080/bluemsun_island/"+data1+"/posts/"+data2,
+        headers:{
+            "Authorization":token
+        },
+        contentType: "application/json",
+        error: function() {
+            $("#dialog p").html("删除失败，请重试")
+            $( "#dialog" ).dialog( "open" );
+            setTimeout(function(){
+                $( "#dialog" ).dialog( "close" );
+            },2000);
+        },
+        success: function(data) {
+            if(data.status==1){
+                $("#dialog p").html("删除成功")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                    history.go(0)
+                 },2000);
+            }
+            else{
+                console.log(data)
+                $("#dialog p").html("删除失败，请重试")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                },2000);
+            }
+        }
+    });
 }
