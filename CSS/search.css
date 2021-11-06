@@ -75,11 +75,11 @@
     color:rgb(143, 77, 38) ;
 }
 /* 分页页码框 */
-#pager1{
+.pager{
     display: flex;
     justify-content: center;
 }
-#pager1 div{
+.pager div{
     margin: 5px;
     padding: 5px;
     border-radius: 8px;
