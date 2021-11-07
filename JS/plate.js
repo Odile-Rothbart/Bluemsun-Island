@@ -241,7 +241,7 @@ function request(pager){
                                 <span><img src="${data.page.list[item].imageUrl}" alt="" width="40px" height="40px"></span>
                                 <p>${data.page.list[item].username}</p>
                                 <a href="../HTML/plate.html?plateid=${data.page.list[item].sectionId}" class="plate"><p>${data.page.list[item].sectionName}</p></a>
-                                <span class="toppost">置顶</span>
+                                
                             </div>
                             <h4>${data.page.list[item].title}</h4>
                             
