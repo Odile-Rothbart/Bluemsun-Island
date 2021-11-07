@@ -342,7 +342,7 @@ editor.config.uploadImgHooks = {
     fail: function (xhr, editor, result) {
         // 图片上传并返回结果，但图片插入错误时触发
         // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
-        alert("失败");
+        console.log("失败");
     },
     error: function (xhr, editor) {
         // 图片上传出错时触发
@@ -371,7 +371,7 @@ document.getElementById('submit').addEventListener('click', function () {
       console.log(title)
       console.log(content);
       // 读取 text
-        var announcement_mag = editor.txt.text();
+        var announcement_mag = editor.txt.html();
         // alert(announcement_mag)    
         var token= localStorage.getItem("token");
         console.log(token)
@@ -394,7 +394,6 @@ document.getElementById('submit').addEventListener('click', function () {
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){
                     $( "#dialog" ).dialog( "close" );
-                    $( "#dialogWrite" ).dialog( "close" );
                     history.go(0)
                 },2000);
             }
