@@ -65,7 +65,6 @@ function request(pager){
                                         <a href="../HTML/plate.html?plateid=${data.page.list[item].sectionId}" class="plate"><p>${data.page.list[item].sectionName}</p></a>
                                     </div>
                                     <h4>${data.page.list[item].title}</h4>
-                                    
                                     <div class="time">
                                         <p>${data.page.list[item].postDate}</p>
                                     </div>
@@ -79,21 +78,13 @@ function request(pager){
                 document.getElementById("data").innerHTML = dataHtml;
                 show(pager);
             }
-            else if(data.status==2){
+            else{
                 console.log(data)
                 $("#dialog p").html("未登录，请先登录")
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){
                     location.href="../HTML/login.html";
                 },3000);
-            }
-            else{
-                console.log(data)
-                $("#dialog p").html("信息加载失败")
-                $( "#dialog" ).dialog( "open" );
-                setTimeout(function(){
-                    $( "#dialog" ).dialog( "close" );
-                },2000);
             }
         }
     });

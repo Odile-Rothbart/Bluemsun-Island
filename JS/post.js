@@ -41,6 +41,7 @@ var postid
             if(data.status==1){
                 console.log(data)
                 // 渲染当前页面数据
+                
                 var dataHtml = "";
                     dataHtml += `
                     <div class="user">
@@ -58,26 +59,32 @@ var postid
                     <div class="point">
                         <div><span class="p1"></span><p>${data.post.accessNumber}</p></div>
                         <div><span class="p2"></span><p>${data.post.commentNumber}</p></div>
-                        <div><span class="p3"></span><p>${data.post.likeNumber}</p></div>
+                        <div id="like" onclick="thumbs_up(${data.post.postId},${data.like})"><span class="p3"></span><p>${data.post.likeNumber}</p></div>
                     </div>
                 `
                 document.getElementById("platemsg").innerHTML = dataHtml;
+                if(data.like==1){
+                    $("#like").css("background-color","rgb(143, 77, 38)")
+                    $("#like span").css("background","url(../IMG/whitenav.png) no-repeat")
+                    $("#like span").css("background-size","320px 300px")
+                    $("#like span").css("background-position","-260px -140px")
+                    $("#like p").css("color","white")
+                }
+                // if(data.like==0){
+                //     $("#like").css("background-color","rgba(245, 245, 245, 0.7)")
+                //     $("#like span").css("background","url(../IMG/whitenav.png) no-repeat")
+                //     $("#like span").css("background-size","320px 300px")
+                //     $("#like span").css("background-position","-260px -140px")
+                //     $("#like p").css("color","white")
+                // }
             }
-            else if(data.status==2){
+            else{
                 console.log(data)
                 $("#dialog p").html("未登录，请先登录")
                 $( "#dialog" ).dialog( "open" );
                 setTimeout(function(){
                     location.href="../HTML/login.html";
                 },3000);
-            }
-            else{
-                console.log(data)
-                $("#dialog p").html("信息加载失败")
-                $( "#dialog" ).dialog( "open" );
-                setTimeout(function(){
-                    $( "#dialog" ).dialog( "close" );
-                },2000);
             }
         }
     });
@@ -583,3 +590,47 @@ $("#search").click(function(){
     var searchtext=$("#searchtext").val()
     location.href=`../HTML/search.html?searchtext=`+searchtext;
 })
+
+// 点赞
+function thumbs_up(data1,data2){
+    console.log(data1)
+    var token= localStorage.getItem("token");
+    console.log(token)
+    if(data2==1){
+        data2=0
+    }
+    else{
+        data2=1
+    }
+    $.ajax({
+        type: 'PATCH',
+        url:"http://windlinxy.top:8080/bluemsun_island/"+data1+"/likes/"+data2,
+        headers:{
+            "Authorization":token
+        },
+        contentType: "application/json",
+        error: function() {
+            $("#dialog p").html("失败，请重试")
+            $( "#dialog" ).dialog( "open" );
+            setTimeout(function(){
+                $( "#dialog" ).dialog( "close" );
+            },2000);
+        },
+        success: function(data) {
+            console.log(data)
+            if(data.status==1){
+                console.log("成功")
+                history.go(0)
+            }
+            
+            if(data.status==0){
+                console.log(data)
+                $("#dialog p").html("失败，请重试")
+                $( "#dialog" ).dialog( "open" );
+                setTimeout(function(){
+                    $( "#dialog" ).dialog( "close" );
+                },2000);
+            }
+        }
+    });
+}
